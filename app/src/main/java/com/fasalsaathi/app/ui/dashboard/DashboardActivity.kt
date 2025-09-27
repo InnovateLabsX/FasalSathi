@@ -85,7 +85,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         
         findViewById<CardView>(R.id.cardFaq).setOnClickListener {
-            startActivity(Intent(this, com.fasalsaathi.app.ui.faq.FaqActivity::class.java))
+            startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
         }
         
         findViewById<CardView>(R.id.cardWeather).setOnClickListener {
@@ -94,7 +94,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         // FAB for AI chat
         findViewById<FloatingActionButton>(R.id.fabChat).setOnClickListener {
-            startActivity(Intent(this, com.fasalsaathi.app.ui.faq.FaqActivity::class.java))
+            startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
         }
         
         // Language button click
@@ -231,7 +231,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(Intent(this, com.fasalsaathi.app.ui.profile.SettingsActivity::class.java))
             }
             R.id.nav_faq -> {
-                startActivity(Intent(this, com.fasalsaathi.app.ui.faq.FaqActivity::class.java))
+                startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
             }
             R.id.nav_logout -> {
                 showLogoutConfirmation()
@@ -353,27 +353,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     private fun showDetailedWeather() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_weather_details, null)
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-        
-        // Set dialog background to be transparent for rounded corners
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        
-        // Get weather data and populate dialog
-        loadDetailedWeatherData(dialogView, dialog)
-        
-        // Set up button listeners
-        dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnRefreshWeather).setOnClickListener {
-            loadDetailedWeatherData(dialogView, dialog)
-        }
-        
-        dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCloseWeather).setOnClickListener {
-            dialog.dismiss()
-        }
-        
-        dialog.show()
+        // Navigate to the comprehensive weather activity
+        startActivity(Intent(this, com.fasalsaathi.app.ui.weather.WeatherActivity::class.java))
     }
     
     private fun loadDetailedWeatherData(dialogView: android.view.View, dialog: AlertDialog? = null) {

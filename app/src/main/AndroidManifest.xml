@@ -6,9 +6,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- Hardware features -->
+    <uses-feature 
+        android:name="android.hardware.microphone"
+        android:required="false" />
 
     <application
         android:name=".FasalSaathiApplication"
@@ -57,6 +63,19 @@
             android:name=".ui.dashboard.DashboardActivity"
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Weather Activity -->
+        <activity
+            android:name=".ui.weather.WeatherActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- AI Assistant Activity -->
+        <activity
+            android:name=".ui.ai.AIAssistantActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi"
+            android:windowSoftInputMode="adjustResize" />
             
         <!-- Crop Recommendation Activity -->
         <activity

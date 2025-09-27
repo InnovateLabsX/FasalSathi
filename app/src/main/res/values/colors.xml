@@ -4,6 +4,7 @@
     <color name="primary_green">#4CAF50</color>
     <color name="primary_green_dark">#388E3C</color>
     <color name="primary_green_light">#81C784</color>
+    <color name="primary_dark">#388E3C</color>
     
     <!-- Secondary Colors (Earth Tones) -->
     <color name="secondary_brown">#8D6E63</color>
@@ -44,6 +45,21 @@
     <color name="crop_gold">#FFD54F</color>
     <color name="water_blue">#03DAC6</color>
     <color name="sun_orange">#FF9800</color>
+    
+    <!-- UV Index Colors -->
+    <color name="uv_low">#4CAF50</color>      <!-- 0-2: Low (Green) -->
+    <color name="uv_moderate">#FFEB3B</color> <!-- 3-5: Moderate (Yellow) -->
+    <color name="uv_high">#FF9800</color>     <!-- 6-7: High (Orange) -->
+    <color name="uv_very_high">#F44336</color><!-- 8-10: Very High (Red) -->
+    <color name="uv_extreme">#9C27B0</color>  <!-- 11+: Extreme (Purple) -->
+    
+    <!-- Soil Moisture Colors -->
+    <color name="soil_dry">#D32F2F</color>      <!-- 0-20%: Dry (Red) -->
+    <color name="soil_low">#FF9800</color>      <!-- 21-40%: Low (Orange) -->
+    <color name="soil_moderate">#FFC107</color> <!-- 41-60%: Moderate (Yellow) -->
+    <color name="soil_good">#4CAF50</color>     <!-- 61-80%: Good (Green) -->
+    <color name="soil_wet">#2196F3</color>      <!-- 81-100%: Wet (Blue) -->
+    <color name="soil_saturated">#2196F3</color><!-- 81-100%: Saturated (Blue) -->
     
     <!-- Transparency Colors -->
     <color name="overlay_dark">#80000000</color>

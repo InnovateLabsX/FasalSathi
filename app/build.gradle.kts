@@ -59,6 +59,10 @@ dependencies {
     // Circle Image View for profile pictures
     implementation("de.hdodenhof:circleimageview:3.1.0")
     
+    // For future AI enhancements (commented out for now)
+    // implementation("org.tensorflow:tensorflow-lite:2.13.0")
+    // implementation("org.tensorflow:tensorflow-lite-support:0.4.3")
+    
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
