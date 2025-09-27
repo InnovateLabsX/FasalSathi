@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- TODO: Use <include> and <exclude> to control what is backed up.
+        <include .../>
+        <exclude .../>
+        -->
+    </cloud-backup>
+    <!--
+    Allow backup of the full shortcut file; the system will only restore if the
+    app is being restored on the same device as the original backup. For cross-device
+    restores, the data will be omitted from the restore set and will not cause
+    errors.
+    -->
+    <device-transfer>
+        <include domain="sharedpref" path="."/>
+        <include domain="database" path="."/>
+        <include domain="file" path="."/>
+    </device-transfer>
+</data-extraction-rules>

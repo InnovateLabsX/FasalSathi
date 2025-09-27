@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/dashboard" />
+            
+        <item
+            android:id="@+id/nav_crop_recommendation"
+            android:icon="@drawable/ic_agriculture"
+            android:title="@string/crop_recommendation" />
+            
+        <item
+            android:id="@+id/nav_disease_detection"
+            android:icon="@drawable/ic_medical_services"
+            android:title="@string/disease_detection" />
+            
+        <item
+            android:id="@+id/nav_market_prices"
+            android:icon="@drawable/ic_trending_up"
+            android:title="@string/market_prices" />
+            
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_wb_sunny"
+            android:title="@string/weather" />
+            
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_person"
+                android:title="@string/profile" />
+                
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/settings" />
+        </menu>
+    </item>
+    
+    <item android:title="Help &amp; Support">
+        <menu>
+            <item
+                android:id="@+id/nav_faq"
+                android:icon="@drawable/ic_help"
+                android:title="FAQ AI Assistant" />
+                
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>
