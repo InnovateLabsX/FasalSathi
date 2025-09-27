@@ -16,14 +16,12 @@ import com.fasalsaathi.app.data.model.IndianCitiesData
 class WeatherService {
     
     companion object {
-        // OpenWeatherMap API - Free tier available
-        private const val OPENWEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5"
-        // Replace with your actual OpenWeatherMap API key from https://openweathermap.org/api
-        private const val OPENWEATHER_API_KEY = "781eb4b3bfc94420a75114903252709" // Replace with your actual API key
+        // Open-Meteo API - Free, no API key required
+        private const val OPEN_METEO_BASE_URL = "https://api.open-meteo.com/v1/forecast"
         
-        // For production: Get free API key from https://openweathermap.org/api
-        // Currently using enhanced simulation with realistic data
-        private const val USE_REAL_API = true // Set to true when you have a valid API key
+        // Open-Meteo provides free weather data without API keys
+        // Much better for agricultural applications with soil data
+        private const val USE_REAL_API = true // Always true for Open-Meteo (it's free!)
     }
     
     data class WeatherData(
@@ -38,7 +36,13 @@ class WeatherService {
         val visibility: Double,
         val uvIndex: Int,
         val feelsLike: Double,
-        val icon: String
+        val icon: String,
+        // Agricultural-specific data from Open-Meteo
+        val precipitationProbability: Int = 0,
+        val soilMoisture: Double = 0.0,
+        val soilTemperature: Double = 0.0,
+        val cloudCover: Int = 0,
+        val precipitationMm: Double = 0.0
     )
     
     data class ForecastData(
@@ -57,8 +61,8 @@ class WeatherService {
     suspend fun getCurrentWeatherForCity(city: IndianCity): WeatherData? {
         return withContext(Dispatchers.IO) {
             try {
-                if (USE_REAL_API && OPENWEATHER_API_KEY != "YOUR_API_KEY_HERE") {
-                    // Use real OpenWeatherMap API
+                if (USE_REAL_API) {
+                    // Use real Open-Meteo API
                     fetchRealWeatherData(city.latitude, city.longitude, city.name, city.state)
                 } else {
                     // Use enhanced simulated data based on actual city coordinates
@@ -108,7 +112,7 @@ class WeatherService {
                 
                 if (cityName != null && cityName != "Select City" && latitude != 0.0 && longitude != 0.0) {
                     println("Using saved location data for weather")
-                    if (USE_REAL_API && OPENWEATHER_API_KEY != "YOUR_API_KEY_HERE") {
+                    if (USE_REAL_API) {
                         println("Fetching real weather data for $cityName")
                         val realWeather = fetchRealWeatherData(latitude, longitude, cityName, state ?: "")
                         if (realWeather != null) {
@@ -146,7 +150,7 @@ class WeatherService {
     suspend fun getCurrentWeather(latitude: Double, longitude: Double): WeatherData? {
         return withContext(Dispatchers.IO) {
             try {
-                if (USE_REAL_API && OPENWEATHER_API_KEY != "YOUR_API_KEY_HERE") {
+                if (USE_REAL_API) {
                     fetchRealWeatherData(latitude, longitude, "Unknown Location", "")
                 } else {
                     getSimulatedWeatherData(latitude, longitude)
@@ -317,13 +321,26 @@ class WeatherService {
     }
     
     /**
-     * Fetch real weather data from OpenWeatherMap API
+     * Fetch real weather data from Open-Meteo API (Free, no API key required)
+     * Includes agricultural-specific data like soil moisture and temperature
      */
     private suspend fun fetchRealWeatherData(lat: Double, lon: Double, cityName: String, state: String): WeatherData? {
         return withContext(Dispatchers.IO) {
             try {
-                val url = "$OPENWEATHER_BASE_URL/weather?lat=$lat&lon=$lon&appid=$OPENWEATHER_API_KEY&units=metric"
-                println("Weather API URL: $url")
+                // Open-Meteo API URL with comprehensive weather and agricultural data
+                val url = buildString {
+                    append(OPEN_METEO_BASE_URL)
+                    append("?latitude=$lat")
+                    append("&longitude=$lon")
+                    append("&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability")
+                    append(",weather_code,visibility,cloud_cover,wind_speed_180m,wind_direction_180m")
+                    append(",rain,soil_temperature_18cm,soil_moisture_1_to_3cm,uv_index_clear_sky")
+                    append("&daily=weather_code")
+                    append("&forecast_hours=1")
+                    append("&timezone=auto")
+                }
+                
+                println("Open-Meteo API URL: $url")
                 
                 val connection = URL(url).openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
@@ -331,49 +348,71 @@ class WeatherService {
                 connection.readTimeout = 15000
                 
                 val responseCode = connection.responseCode
-                println("Weather API Response Code: $responseCode")
+                println("Open-Meteo API Response Code: $responseCode")
                 
                 if (responseCode == 200) {
                     val response = connection.inputStream.bufferedReader().readText()
-                    println("Weather API Response: $response")
-                    parseOpenWeatherResponse(response, cityName, state)
+                    println("Open-Meteo API Response Success")
+                    parseOpenMeteoResponse(response, cityName, state)
                 } else {
                     val errorResponse = connection.errorStream?.bufferedReader()?.readText()
-                    println("Weather API Error: $responseCode - $errorResponse")
+                    println("Open-Meteo API Error: $responseCode - $errorResponse")
                     null
                 }
             } catch (e: Exception) {
-                println("Weather API Exception: ${e.message}")
+                println("Open-Meteo API Exception: ${e.message}")
                 e.printStackTrace()
                 null
             }
         }
     }
     
-    private fun parseOpenWeatherResponse(jsonResponse: String, cityName: String, state: String): WeatherData? {
+    /**
+     * Parse Open-Meteo API response with comprehensive weather and agricultural data
+     */
+    private fun parseOpenMeteoResponse(jsonResponse: String, cityName: String, state: String): WeatherData? {
         return try {
             val json = JSONObject(jsonResponse)
-            val main = json.getJSONObject("main")
-            val weather = json.getJSONArray("weather").getJSONObject(0)
-            val wind = json.optJSONObject("wind")
-            val sys = json.optJSONObject("sys")
+            val hourly = json.getJSONObject("hourly")
+            
+            // Get current hour data (first element in arrays)
+            val temperature = hourly.getJSONArray("temperature_2m").getDouble(0)
+            val humidity = hourly.getJSONArray("relative_humidity_2m").getInt(0)
+            val precipitation = hourly.getJSONArray("precipitation").getDouble(0)
+            val precipitationProb = hourly.getJSONArray("precipitation_probability").getInt(0)
+            val weatherCode = hourly.getJSONArray("weather_code").getInt(0)
+            val visibility = hourly.getJSONArray("visibility").getDouble(0) / 1000.0 // Convert to km
+            val cloudCover = hourly.getJSONArray("cloud_cover").getInt(0)
+            val windSpeed = hourly.getJSONArray("wind_speed_180m").getDouble(0)
+            val windDirection = hourly.getJSONArray("wind_direction_180m").getDouble(0)
+            val soilTemp = hourly.getJSONArray("soil_temperature_18cm").getDouble(0)
+            val soilMoisture = hourly.getJSONArray("soil_moisture_1_to_3cm").getDouble(0)
+            val uvIndex = hourly.getJSONArray("uv_index_clear_sky").getInt(0)
             
             val location = if (state.isNotEmpty()) "$cityName, $state" else cityName
+            val condition = getWeatherConditionFromCode(weatherCode)
+            val icon = getWeatherIconFromCode(weatherCode)
             
             WeatherData(
                 location = location,
-                temperature = main.getDouble("temp"),
-                condition = weather.getString("description").replaceFirstChar { it.titlecase() },
-                humidity = main.getInt("humidity"),
-                windSpeed = (wind?.optDouble("speed") ?: 0.0) * 3.6, // Convert m/s to km/h
-                windDirection = getWindDirection(wind?.optDouble("deg") ?: 0.0),
-                pressure = main.getDouble("pressure"),
-                visibility = json.optDouble("visibility", 10000.0) / 1000, // Convert to km
-                uvIndex = 0, // Would need separate UV API call
-                feelsLike = main.getDouble("feels_like"),
-                icon = getWeatherIconFromCondition(weather.getString("main"))
+                temperature = temperature,
+                condition = condition,
+                humidity = humidity,
+                windSpeed = windSpeed,
+                windDirection = getWindDirection(windDirection),
+                pressure = 1013.25, // Open-Meteo doesn't provide pressure in this endpoint
+                visibility = visibility,
+                uvIndex = uvIndex,
+                feelsLike = temperature + if (windSpeed > 10) -2 else 0, // Simple feels-like calculation
+                icon = icon,
+                precipitationProbability = precipitationProb,
+                soilMoisture = soilMoisture,
+                soilTemperature = soilTemp,
+                cloudCover = cloudCover,
+                precipitationMm = precipitation
             )
         } catch (e: Exception) {
+            println("Error parsing Open-Meteo response: ${e.message}")
             e.printStackTrace()
             null
         }
@@ -409,7 +448,13 @@ class WeatherService {
             visibility = 10.0,
             uvIndex = 5,
             feelsLike = baseTemp + 2.0,
-            icon = condition.substring(0, 2) // Just emoji
+            icon = condition.substring(0, 2), // Just emoji
+            // Simple agricultural defaults
+            precipitationProbability = 30,
+            soilMoisture = 0.2,
+            soilTemperature = baseTemp - 3.0,
+            cloudCover = 40,
+            precipitationMm = 0.0
         )
     }
     
@@ -446,7 +491,17 @@ class WeatherService {
             visibility = (8..15).random().toDouble(),
             uvIndex = calculateUVIndex(city.latitude, month, hour),
             feelsLike = actualTemp + (-2..3).random(),
-            icon = getWeatherIcon(condition)
+            icon = getWeatherIcon(condition),
+            // Agricultural simulation data
+            precipitationProbability = if (condition.contains("rain", ignoreCase = true)) (60..90).random() else (10..40).random(),
+            soilMoisture = calculateSimulatedSoilMoisture(city.latitude, month, condition),
+            soilTemperature = actualTemp - (2..5).random(), // Soil is typically cooler
+            cloudCover = when {
+                condition.contains("clear", ignoreCase = true) -> (0..20).random()
+                condition.contains("partly", ignoreCase = true) -> (30..60).random()
+                else -> (70..95).random()
+            },
+            precipitationMm = if (condition.contains("rain", ignoreCase = true)) (1..15).random().toDouble() else 0.0
         )
     }
     
@@ -616,6 +671,74 @@ class WeatherService {
             "snow" -> "❄️"
             "mist", "fog", "haze" -> "🌫️"
             else -> "🌤️"
+        }
+    }
+    
+    /**
+     * Calculate simulated soil moisture based on location and season
+     */
+    private fun calculateSimulatedSoilMoisture(latitude: Double, month: Int, condition: String): Double {
+        val baseMoisture = when (month) {
+            5, 6, 7, 8, 9 -> 0.3 // Monsoon season - higher moisture
+            10, 11 -> 0.25 // Post-monsoon
+            12, 1, 2 -> 0.15 // Winter - lower moisture
+            else -> 0.2 // Summer/Spring
+        }
+        
+        val conditionModifier = when {
+            condition.contains("rain", ignoreCase = true) -> 0.1
+            condition.contains("clear", ignoreCase = true) -> -0.05
+            else -> 0.0
+        }
+        
+        // Regional variation
+        val regionalModifier = when {
+            latitude > 30 -> -0.02 // Northern regions (drier)
+            latitude < 15 -> 0.03 // Southern regions (more humid)
+            else -> 0.0
+        }
+        
+        return (baseMoisture + conditionModifier + regionalModifier).coerceIn(0.05, 0.45)
+    }
+
+    /**
+     * Convert Open-Meteo weather code to human-readable condition
+     * Weather codes: https://open-meteo.com/en/docs
+     */
+    private fun getWeatherConditionFromCode(code: Int): String {
+        return when (code) {
+            0 -> "Clear sky"
+            1, 2, 3 -> "Partly cloudy"
+            45, 48 -> "Fog"
+            51, 53, 55 -> "Light drizzle"
+            56, 57 -> "Freezing drizzle"
+            61, 63, 65 -> "Rain"
+            66, 67 -> "Freezing rain"
+            71, 73, 75 -> "Snow fall"
+            77 -> "Snow grains"
+            80, 81, 82 -> "Rain showers"
+            85, 86 -> "Snow showers"
+            95 -> "Thunderstorm"
+            96, 99 -> "Thunderstorm with hail"
+            else -> "Unknown"
+        }
+    }
+    
+    /**
+     * Convert Open-Meteo weather code to emoji icon
+     */
+    private fun getWeatherIconFromCode(code: Int): String {
+        return when (code) {
+            0 -> "☀️" // Clear sky
+            1, 2, 3 -> "🌤️" // Partly cloudy
+            45, 48 -> "🌫️" // Fog
+            51, 53, 55, 56, 57 -> "🌦️" // Drizzle
+            61, 63, 65, 66, 67 -> "🌧️" // Rain
+            71, 73, 75, 77 -> "🌨️" // Snow
+            80, 81, 82 -> "🌧️" // Rain showers
+            85, 86 -> "🌨️" // Snow showers
+            95, 96, 99 -> "⛈️" // Thunderstorm
+            else -> "🌤️" // Default
         }
     }
 }
