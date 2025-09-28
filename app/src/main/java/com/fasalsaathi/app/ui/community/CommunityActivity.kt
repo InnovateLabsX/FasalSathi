@@ -2,49 +2,55 @@ package com.fasalsaathi.app.ui.community
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.google.android.material.card.MaterialCardView
 import com.fasalsaathi.app.R
+import com.fasalsaathi.app.ui.base.BaseBottomNavigationActivity
+import com.google.android.material.card.MaterialCardView
 
-class CommunityActivity : AppCompatActivity() {
-    
+class CommunityActivity : BaseBottomNavigationActivity() {
+
+    override fun getCurrentNavItemId(): Int {
+        return R.id.nav_community
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
-        
+
         setupToolbar()
+        setupBottomNavigation()
         setupFeatureCards()
     }
-    
+
     private fun setupToolbar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            title = "Community"
-        }
-        
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
+            title = "Community Hub"
         }
     }
-    
+
     private fun setupFeatureCards() {
-        findViewById<MaterialCardView>(R.id.cardDiscussionForums).setOnClickListener {
+        // Discussion Forums Card
+        findViewById<MaterialCardView>(R.id.card_discussion_forums)?.setOnClickListener {
             startActivity(Intent(this, DiscussionForumsActivity::class.java))
         }
-        
-        findViewById<MaterialCardView>(R.id.cardKnowledgeSharing).setOnClickListener {
+
+        // Knowledge Sharing Card  
+        findViewById<MaterialCardView>(R.id.card_knowledge_base)?.setOnClickListener {
             startActivity(Intent(this, KnowledgeSharingActivity::class.java))
         }
-        
-        findViewById<MaterialCardView>(R.id.cardExpertSupport).setOnClickListener {
+
+        // Expert Support Card
+        findViewById<MaterialCardView>(R.id.card_expert_support)?.setOnClickListener {
             startActivity(Intent(this, ExpertSupportActivity::class.java))
         }
-        
-        findViewById<MaterialCardView>(R.id.cardMarketUpdates).setOnClickListener {
+
+        // Market Updates Card
+        findViewById<MaterialCardView>(R.id.card_market_updates)?.setOnClickListener {
             startActivity(Intent(this, MarketUpdatesActivity::class.java))
         }
     }

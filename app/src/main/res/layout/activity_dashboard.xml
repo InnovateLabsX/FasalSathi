@@ -25,11 +25,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
-                android:paddingStart="16dp"
+                android:paddingStart="4dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="16dp"
+                android:paddingBottom="0dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="16dp"
                 app:navigationIconTint="@color/white"
                 app:title="@string/app_name"
                 app:titleCentered="false"
+                app:titleMarginStart="4dp"
+                app:titleMarginTop="18dp"
                 app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -119,7 +125,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="start|center_vertical">
 
                             <ImageView
                                 android:id="@+id/ivWeatherIcon"
@@ -134,7 +140,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginStart="16dp"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:gravity="start">
 
                                 <TextView
                                     android:id="@+id/tvTemperature"
@@ -143,6 +150,7 @@
                                     android:textColor="@color/white"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
+                                    android:gravity="start"
                                     tools:text="28°C" />
 
                                 <TextView
@@ -151,6 +159,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white_transparent"
                                     android:textSize="14sp"
+                                    android:gravity="start"
                                     tools:text="Partly Cloudy" />
 
                             </LinearLayout>

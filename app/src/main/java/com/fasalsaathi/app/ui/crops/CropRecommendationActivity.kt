@@ -45,8 +45,9 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.random.Random
+import com.fasalsaathi.app.ui.base.BaseBottomNavigationActivity
 
-class CropRecommendationActivity : AppCompatActivity() {
+class CropRecommendationActivity : BaseBottomNavigationActivity() {
     
     private lateinit var toolbar: Toolbar
     private lateinit var btnAutoLocation: MaterialButton
@@ -130,12 +131,17 @@ class CropRecommendationActivity : AppCompatActivity() {
             }
         }
     
+    override fun getCurrentNavItemId(): Int {
+        return R.id.nav_crops
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crop_recommendation)
         
         initializeViews()
         setupToolbar()
+        setupBottomNavigation()
         setupLocationServices()
         setupDropdowns()
         setupClickListeners()

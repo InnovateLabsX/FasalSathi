@@ -504,4 +504,15 @@
         android:visibility="gone"
         app:indicatorColor="@color/modern_medium_4" />
 
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:itemIconTint="@color/nav_bottom_navigation_selector"
+        app:itemTextColor="@color/nav_bottom_navigation_selector"
+        app:menu="@menu/bottom_navigation" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

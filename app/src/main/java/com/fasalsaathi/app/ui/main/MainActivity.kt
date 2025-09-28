@@ -2,17 +2,30 @@ package com.fasalsaathi.app.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.fasalsaathi.app.FasalSaathiApplication
+import com.fasalsaathi.app.R
 import com.fasalsaathi.app.ui.auth.LoginActivity
 import com.fasalsaathi.app.ui.dashboard.DashboardActivity
 import com.fasalsaathi.app.ui.language.LanguageSelectionActivity
 
 class MainActivity : AppCompatActivity() {
     
+    private val splashDelay = 2000L // 2 seconds
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         
+        // Add smooth transition delay for better UX
+        Handler(Looper.getMainLooper()).postDelayed({
+            determineNavigationDestination()
+        }, splashDelay)
+    }
+    
+    private fun determineNavigationDestination() {
         val app = application as FasalSaathiApplication
         val isFirstTime = app.sharedPreferences.getBoolean("is_first_time", true)
         val isLoggedIn = app.sharedPreferences.getBoolean("is_logged_in", false)
@@ -42,18 +55,21 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToLanguageSelection() {
         val intent = Intent(this, LanguageSelectionActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.fade_in_scale, R.anim.fade_out_scale)
         finish()
     }
     
     private fun navigateToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         finish()
     }
     
     private fun navigateToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.fade_in_scale, R.anim.fade_out_scale)
         finish()
     }
 }

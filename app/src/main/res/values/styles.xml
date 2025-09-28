@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Text Appearances for consistency -->
+    <style name="TextAppearance.FasalSathi.Headline1" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Headline2" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Headline3" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Subtitle1" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Subtitle2" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Body1" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Body2" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+    
+    <style name="TextAppearance.FasalSathi.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <!-- Card Styles for consistency -->
+    <style name="CardView.FasalSathi" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@android:color/white</item>
+    </style>
+    
+    <style name="CardView.FasalSathi.Action" parent="CardView.FasalSathi">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">6dp</item>
+    </style>
+    
+    <!-- Button Styles -->
+    <style name="Button.FasalSathi.Primary" parent="Widget.Material3.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/primary_green</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    
+    <style name="Button.FasalSathi.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/primary_green</item>
+        <item name="strokeColor">@color/primary_green</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    
+    <style name="Button.FasalSathi.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/primary_green</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    
+    <!-- Chip Styles -->
+    <style name="Chip.FasalSathi" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/primary_green_light</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+    
+    <!-- Input Field Styles -->
+    <style name="TextInputLayout.FasalSathi" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/primary_green</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+    </style>
+    
+    <!-- Toolbar Styles -->
+    <style name="Toolbar.FasalSathi" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/primary_green</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="subtitleTextColor">@color/white_transparent</item>
+        <item name="navigationIconTint">@android:color/white</item>
+    </style>
+    
+    <!-- Loading Animation -->
+    <style name="CircularProgressIndicator.FasalSathi" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorColor">@color/primary_green</item>
+        <item name="trackThickness">4dp</item>
+        <item name="indicatorSize">48dp</item>
+    </style>
+    
+</resources>

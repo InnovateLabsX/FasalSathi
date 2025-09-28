@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:visibility="gone"
+    android:id="@+id/errorContainer">
+
+    <!-- Error icon -->
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_error"
+        android:layout_marginBottom="16dp"
+        app:tint="@color/error_color"
+        android:contentDescription="Error icon" />
+
+    <!-- Error title -->
+    <TextView
+        android:id="@+id/errorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Something went wrong"
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
+
+    <!-- Error message -->
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please try again"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:maxLines="3" />
+
+    <!-- Retry button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/retryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Try Again"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primary_green"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/ic_refresh"
+        app:iconGravity="start"
+        style="@style/Widget.MaterialComponents.Button" />
+
+</LinearLayout>
