@@ -46,6 +46,7 @@ class HinglishStringProvider(private val context: Context) {
             R.string.action_ai_suggestion_subtitle to "AI tips lo",
             R.string.action_disease_scan_subtitle to "Leaves scan karo",
             R.string.action_profile_subtitle to "Account manage karo",
+            R.string.action_ai_assistant_subtitle to "Farming advice lo",
             R.string.action_weather_subtitle to "Farm work plan karo",
             
             // Insights

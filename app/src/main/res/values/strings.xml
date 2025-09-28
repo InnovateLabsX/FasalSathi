@@ -84,6 +84,7 @@
     <string name="action_ai_suggestion_subtitle">Get AI suggestions</string>
     <string name="action_disease_scan_subtitle">Scan leaves instantly</string>
     <string name="action_profile_subtitle">Manage your account</string>
+    <string name="action_ai_assistant_subtitle">Get farming advice</string>
     <string name="action_weather_subtitle">Plan field work</string>
     <string name="insight_soil_moisture">Soil Moisture</string>
     <string name="insight_soil_moisture_value">68% • Optimal</string>

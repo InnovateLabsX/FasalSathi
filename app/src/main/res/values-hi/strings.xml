@@ -48,6 +48,10 @@
     <string name="smart_actions">स्मार्ट एक्शन</string>
     <string name="smart_insights">स्मार्ट जानकारी</string>
     <string name="view_reports">रिपोर्ट देखें</string>
+    
+    <!-- Action Subtitles -->
+    <string name="action_profile_subtitle">अपना खाता प्रबंधित करें</string>
+    <string name="action_ai_assistant_subtitle">कृषि सलाह प्राप्त करें</string>
     <string name="dashboard_insight_tagline">आपके खेत के लिए आज की स्मार्ट जानकारी</string>
     <string name="dashboard_manage_button">प्रबंधित करें</string>
     <string name="dashboard_soil_moisture_chip">मिट्टी की नमी 68%</string>
@@ -58,7 +62,6 @@
     <string name="focus_water_usage">पानी का उपयोग</string>
     <string name="action_ai_suggestion_subtitle">AI सुझाव प्राप्त करें</string>
     <string name="action_disease_scan_subtitle">पत्तियों की तुरंत जांच</string>
-    <string name="action_ai_assistant_subtitle">24/7 कुछ भी पूछें</string>
     <string name="action_weather_subtitle">खेत का काम प्लान करें</string>
     <string name="insight_soil_moisture">मिट्टी की नमी</string>
     <string name="insight_soil_moisture_value">68% • उत्तम</string>

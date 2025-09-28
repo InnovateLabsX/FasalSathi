@@ -101,8 +101,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(Intent(this, com.fasalsaathi.app.ui.disease.DiseaseDetectionActivity::class.java))
         }
         
-        findViewById<CardView>(R.id.cardProfile).setOnClickListener {
-            startActivity(Intent(this, com.fasalsaathi.app.ui.profile.ProfileActivity::class.java))
+        findViewById<CardView>(R.id.cardAIAssistant).setOnClickListener {
+            startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
         }
         
         findViewById<CardView>(R.id.cardWeather).setOnClickListener {

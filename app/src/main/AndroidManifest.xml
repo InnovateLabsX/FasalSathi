@@ -116,6 +116,30 @@
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
             
+        <!-- Discussion Forums Activity -->
+        <activity
+            android:name=".ui.community.DiscussionForumsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Knowledge Sharing Activity -->
+        <activity
+            android:name=".ui.community.KnowledgeSharingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Expert Support Activity -->
+        <activity
+            android:name=".ui.community.ExpertSupportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Market Updates Activity -->
+        <activity
+            android:name=".ui.community.MarketUpdatesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
         <!-- FAQ Activity -->
         <activity
             android:name=".ui.faq.FaqActivity"
