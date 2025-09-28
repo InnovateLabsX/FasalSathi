@@ -1,5 +1,6 @@
 package com.fasalsaathi.app.ui.dashboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -13,14 +14,17 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import com.fasalsaathi.app.R
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.cardview.widget.CardView
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import com.fasalsaathi.app.data.api.WeatherService
 import com.fasalsaathi.app.utils.LanguageManager
+import com.fasalsaathi.app.FasalSaathiApplication
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.fasalsaathi.app.ui.crops.CropRecommendationActivity
+import com.fasalsaathi.app.ui.community.CommunityActivity
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     
@@ -29,6 +33,18 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var toolbar: Toolbar
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var weatherService: WeatherService
+    
+    override fun attachBaseContext(newBase: Context?) {
+        if (newBase != null) {
+            val app = newBase.applicationContext as FasalSaathiApplication
+            val languageManager = app.languageManager
+            val currentLanguage = languageManager.getCurrentLanguage()
+            languageManager.setLocale(currentLanguage)
+            super.attachBaseContext(newBase)
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +59,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setupToolbar()
         setupNavigationDrawer()
         setupClickListeners()
+        setupBottomNavigation()
         loadUserData()
         loadWeatherData()
     }
@@ -77,29 +94,19 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun setupClickListeners() {
         // Quick action cards
         findViewById<CardView>(R.id.cardCropRecommendation).setOnClickListener {
-            // TODO: Navigate to Crop Recommendation
+            startActivity(Intent(this, CropRecommendationActivity::class.java))
         }
         
         findViewById<CardView>(R.id.cardDiseaseDetection).setOnClickListener {
-            // TODO: Navigate to Disease Detection
+            startActivity(Intent(this, com.fasalsaathi.app.ui.disease.DiseaseDetectionActivity::class.java))
         }
         
-        findViewById<CardView>(R.id.cardFaq).setOnClickListener {
-            startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
+        findViewById<CardView>(R.id.cardProfile).setOnClickListener {
+            startActivity(Intent(this, com.fasalsaathi.app.ui.profile.ProfileActivity::class.java))
         }
         
         findViewById<CardView>(R.id.cardWeather).setOnClickListener {
             showDetailedWeather()
-        }
-        
-        // FAB for AI chat
-        findViewById<FloatingActionButton>(R.id.fabChat).setOnClickListener {
-            startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
-        }
-        
-        // Language button click
-        findViewById<MaterialButton>(R.id.btnLanguage).setOnClickListener {
-            showLanguageSelectionDialog()
         }
     }
     
@@ -110,9 +117,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val userEmail = app.sharedPreferences.getString("user_email", "")
         
         findViewById<TextView>(R.id.tvUserName).text = "Hello, $userName!"
-        
-        // Update language button
-        updateLanguageButton()
         
         // Update navigation header with user info
         val headerView = navigationView.getHeaderView(0)
@@ -213,13 +217,13 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 // Already on dashboard
             }
             R.id.nav_crop_recommendation -> {
-                // TODO: Navigate to crop recommendation
+                startActivity(Intent(this, CropRecommendationActivity::class.java))
             }
             R.id.nav_disease_detection -> {
-                // TODO: Navigate to disease detection
+                startActivity(Intent(this, com.fasalsaathi.app.ui.disease.DiseaseDetectionActivity::class.java))
             }
             R.id.nav_market_prices -> {
-                // TODO: Navigate to market prices
+                startActivity(Intent(this, com.fasalsaathi.app.ui.market.MarketActivity::class.java))
             }
             R.id.nav_weather -> {
                 showDetailedWeather()
@@ -244,29 +248,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.dashboard_menu, menu)
-        
-        // Update language menu item text based on current language
-        val languageMenuItem = menu.findItem(R.id.action_language)
-        val app = application as com.fasalsaathi.app.FasalSaathiApplication
-        val currentLanguage = app.sharedPreferences.getString("app_language", "english") ?: "english"
-        
-        val languageText = when (currentLanguage) {
-            "english" -> "🇺🇸 EN"
-            "hindi" -> "🇮🇳 हिं"
-            "hinglish" -> "🇮🇳 Hi"
-            else -> "🇺🇸 EN"
-        }
-        languageMenuItem?.title = languageText
-        
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_language -> {
-                showLanguageSelectionDialog()
-                true
-            }
             android.R.id.home -> {
                 drawerLayout.openDrawer(GravityCompat.START)
                 true
@@ -274,68 +260,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             else -> super.onOptionsItemSelected(item)
         }
     }
-    
-    private fun showLanguageSelectionDialog() {
-        val languages = arrayOf("English", "हिंदी (Hindi)", "Hinglish")
-        val languageCodes = arrayOf("english", "hindi", "hinglish")
-        val languageFlags = arrayOf("🇺🇸", "🇮🇳", "🇮🇳")
-        
-        val app = application as com.fasalsaathi.app.FasalSaathiApplication
-        val currentLanguage = app.sharedPreferences.getString("app_language", "english")
-        val currentIndex = languageCodes.indexOf(currentLanguage)
-        
-        // Create display options with flags
-        val displayOptions = languages.mapIndexed { index, language ->
-            "${languageFlags[index]} $language"
-        }.toTypedArray()
-        
-        AlertDialog.Builder(this)
-            .setTitle("Select Language / भाषा चुनें")
-            .setSingleChoiceItems(displayOptions, currentIndex) { dialog, which ->
-                val selectedLanguage = languageCodes[which]
-                changeAppLanguage(selectedLanguage, languages[which])
-                dialog.dismiss()
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
-    }
-    
-    private fun changeAppLanguage(languageCode: String, languageName: String) {
-        val app = application as com.fasalsaathi.app.FasalSaathiApplication
-        val editor = app.sharedPreferences.edit()
-        editor.putString("app_language", languageCode)
-        editor.apply()
-        
-        // Apply language change using LanguageManager
-        val languageManager = LanguageManager(this)
-        languageManager.setLocale(languageCode)
-        
-        // Show confirmation toast
-        Toast.makeText(this, "Language changed to $languageName", Toast.LENGTH_SHORT).show()
-        
-        // Refresh the toolbar menu to show new language
-        invalidateOptionsMenu()
-        
-        // Update language button
-        updateLanguageButton()
-        
-        // Update dashboard content with new language
-        updateDashboardContent()
-    }
-    
-    private fun updateLanguageButton() {
-        val app = application as com.fasalsaathi.app.FasalSaathiApplication
-        val currentLanguage = app.sharedPreferences.getString("app_language", "english") ?: "english"
-        
-        val languageButton = findViewById<MaterialButton>(R.id.btnLanguage)
-        val buttonText = when (currentLanguage) {
-            "english" -> "🇺🇸 EN"
-            "hindi" -> "🇮🇳 हिं"
-            "hinglish" -> "🇮🇳 Hi"
-            else -> "🇺🇸 EN"
-        }
-        languageButton?.text = buttonText
-    }
+
     
     private fun updateDashboardContent() {
         // Refresh user data and weather info with new language
@@ -500,6 +425,35 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         finish()
         
         Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+    }
+    
+    private fun setupBottomNavigation() {
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        
+        // Set the home tab as selected by default
+        bottomNavigation.selectedItemId = R.id.nav_home
+        
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Already on dashboard/home
+                    true
+                }
+                R.id.nav_crops -> {
+                    startActivity(Intent(this, CropRecommendationActivity::class.java))
+                    true
+                }
+                R.id.nav_community -> {
+                    startActivity(Intent(this, com.fasalsaathi.app.ui.community.CommunityActivity::class.java))
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, com.fasalsaathi.app.ui.profile.ProfileActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
     
     override fun onBackPressed() {

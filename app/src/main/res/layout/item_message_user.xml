@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.8"
-        android:background="@drawable/message_background_user"
+        android:background="@android:color/holo_green_light"
         android:orientation="vertical"
         android:padding="12dp">
 

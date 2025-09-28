@@ -1,8 +1,8 @@
-# FasalSaathi - Agricultural Companion App 🌾
+# FasalSathi - Agricultural Companion App 🌾
 
 > **Smart Agricultural Assistant for Farmers in India**
 
-FasalSaathi is a comprehensive Android application designed to empower farmers with modern technology, providing weather information, AI-powered agricultural guidance, and smart farming recommendations.
+FasalSathi is a comprehensive Android application designed to empower farmers with modern technology, providing weather information, AI-powered agricultural guidance, and smart farming recommendations.
 
 ## 🌟 Features
 

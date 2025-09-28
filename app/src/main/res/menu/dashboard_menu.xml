@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <item
-        android:id="@+id/action_language"
-        android:title="🇺🇸 EN"
-        android:icon="@drawable/ic_language"
-        app:showAsAction="always"
-        android:orderInCategory="100" />
+    <!-- Language selection removed - now handled in LanguageSelectionActivity during app launch -->
         
 </menu>

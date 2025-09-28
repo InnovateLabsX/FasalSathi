@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">FasalSathi</string>
+    
+    <!-- Navigation -->
+    <string name="dashboard">ڈیش بورڈ</string>
+    <string name="crop_recommendation">فصل کی تجویز</string>
+    <string name="disease_detection">بیماری کی تشخیص</string>
+    <string name="market_prices">بازار کی قیمتیں</string>
+    <string name="weather">موسم</string>
+    <string name="profile">پروفائل</string>
+    <string name="settings">سیٹنگز</string>
+    <string name="support">مدد</string>
+    
+    <!-- Common -->
+    <string name="welcome">خوش آمدید</string>
+    <string name="hello">آداب</string>
+    <string name="good_morning">صبح بخیر</string>
+    <string name="good_afternoon">دوپہر بخیر</string>
+    <string name="good_evening">شام بخیر</string>
+    <string name="save">محفوظ کریں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="yes">ہاں</string>
+    <string name="no">نہیں</string>
+    
+    <!-- Dashboard -->
+    <string name="todays_focus">آج کا فوکس</string>
+    <string name="smart_actions">سمارٹ ایکشنز</string>
+    <string name="smart_insights">سمارٹ بصیرت</string>
+    
+    <!-- Language Selection -->
+    <string name="select_language">زبان منتخب کریں</string>
+    <string name="language_selected">زبان منتخب کی گئی</string>
+    
+    <!-- Crop Recommendation -->
+    <string name="get_crop_recommendation">فصل کی تجویز حاصل کریں</string>
+    <string name="soil_type">مٹی کی قسم</string>
+    <string name="farm_size">کھیت کا سائز</string>
+    <string name="location">مقام</string>
+    
+    <!-- Weather -->
+    <string name="temperature">درجہ حرارت</string>
+    <string name="humidity">نمی</string>
+    <string name="wind_speed">ہوا کی رفتار</string>
+    
+    <!-- Common Actions -->
+    <string name="refresh">تازہ کریں</string>
+    <string name="close">بند کریں</string>
+    <string name="share">شیئر کریں</string>
+    <string name="edit">تبدیل کریں</string>
+    <string name="delete">حذف کریں</string>
+</resources>

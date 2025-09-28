@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Home" />
+        
+    <item
+        android:id="@+id/nav_crops"
+        android:enabled="true"
+        android:icon="@drawable/ic_agriculture"
+        android:title="Crops" />
+        
+    <item
+        android:id="@+id/nav_community"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat"
+        android:title="Community" />
+        
+    <item
+        android:id="@+id/nav_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
+        android:title="Profile" />
+</menu>

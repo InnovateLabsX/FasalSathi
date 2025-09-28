@@ -40,9 +40,31 @@
     <string name="disease_detection">रोग पहचान</string>
     <string name="market_prices">बाजार दर</string>
     <string name="weather">मौसम</string>
+    <string name="community">समुदाय</string>
     <string name="profile">प्रोफाइल</string>
     <string name="settings">सेटिंग्स</string>
     <string name="support">सहायता</string>
+    <string name="todays_focus">आज का फोकस</string>
+    <string name="smart_actions">स्मार्ट एक्शन</string>
+    <string name="smart_insights">स्मार्ट जानकारी</string>
+    <string name="view_reports">रिपोर्ट देखें</string>
+    <string name="dashboard_insight_tagline">आपके खेत के लिए आज की स्मार्ट जानकारी</string>
+    <string name="dashboard_manage_button">प्रबंधित करें</string>
+    <string name="dashboard_soil_moisture_chip">मिट्टी की नमी 68%</string>
+    <string name="dashboard_irrigation_chip">2 घंटे में सिंचाई</string>
+    <string name="focus_soil_health">मिट्टी स्वास्थ्य</string>
+    <string name="focus_pest_watch">कीट निगरानी</string>
+    <string name="focus_market_rates">बाजार दरें</string>
+    <string name="focus_water_usage">पानी का उपयोग</string>
+    <string name="action_ai_suggestion_subtitle">AI सुझाव प्राप्त करें</string>
+    <string name="action_disease_scan_subtitle">पत्तियों की तुरंत जांच</string>
+    <string name="action_ai_assistant_subtitle">24/7 कुछ भी पूछें</string>
+    <string name="action_weather_subtitle">खेत का काम प्लान करें</string>
+    <string name="insight_soil_moisture">मिट्टी की नमी</string>
+    <string name="insight_soil_moisture_value">68% • उत्तम</string>
+    <string name="insight_market_price">बाजार मूल्य</string>
+    <string name="insight_market_price_delta">गेहूं ↑ 3.2%</string>
+    <string name="insight_market_price_value">₹ 2,150 / क्विंटल</string>
     
     <!-- Crop Recommendation -->
     <string name="get_crop_recommendation">फसल सुझाव प्राप्त करें</string>

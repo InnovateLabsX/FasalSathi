@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@drawable/rounded_background">
+    android:background="@android:color/white">
 
     <!-- Header -->
     <LinearLayout

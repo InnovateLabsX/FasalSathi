@@ -1,5 +1,6 @@
 package com.fasalsaathi.app.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.fasalsaathi.app.FasalSaathiApplication
 import com.fasalsaathi.app.R
 import com.fasalsaathi.app.utils.LanguageManager
+import com.fasalsaathi.app.utils.ThemeManager
 import com.google.android.material.card.MaterialCardView
 
 class SettingsActivity : AppCompatActivity() {
@@ -31,6 +33,18 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var cardClearCache: MaterialCardView
     private lateinit var cardAbout: MaterialCardView
     private lateinit var cardPrivacy: MaterialCardView
+    
+    override fun attachBaseContext(newBase: Context?) {
+        if (newBase != null) {
+            val app = newBase.applicationContext as FasalSaathiApplication
+            val languageManager = app.languageManager
+            val currentLanguage = languageManager.getCurrentLanguage()
+            languageManager.setLocale(currentLanguage)
+            super.attachBaseContext(newBase)
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,13 +84,16 @@ class SettingsActivity : AppCompatActivity() {
     private fun loadSettings() {
         val app = application as FasalSaathiApplication
         val sharedPrefs = app.sharedPreferences
+        val themeManager = app.themeManager
         
         // Load notification settings
         switchNotifications.isChecked = sharedPrefs.getBoolean("notifications_enabled", true)
         switchWeatherAlerts.isChecked = sharedPrefs.getBoolean("weather_alerts_enabled", true)
         switchPriceAlerts.isChecked = sharedPrefs.getBoolean("price_alerts_enabled", true)
         switchOfflineMode.isChecked = sharedPrefs.getBoolean("offline_mode_enabled", false)
-        switchDarkMode.isChecked = sharedPrefs.getBoolean("dark_mode_enabled", false)
+        
+        // Load dark mode setting from ThemeManager
+        switchDarkMode.isChecked = themeManager.isDarkModeEnabled()
         
         // Load language preference
         val currentLanguage = sharedPrefs.getString("app_language", "english") ?: "english"
@@ -137,12 +154,20 @@ class SettingsActivity : AppCompatActivity() {
         }
         
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            val app = application as FasalSaathiApplication
+            val themeManager = app.themeManager
+            
+            // Set theme immediately
+            val newTheme = if (isChecked) ThemeManager.THEME_DARK else ThemeManager.THEME_LIGHT
+            themeManager.setTheme(newTheme)
+            
+            // Save preference for consistency
             editor.putBoolean("dark_mode_enabled", isChecked)
             editor.apply()
             
-            // In a real app, you would apply the theme change here
+            // Show confirmation
             Toast.makeText(this, 
-                "Theme will change on next app restart", 
+                if (isChecked) "Dark mode enabled" else "Light mode enabled", 
                 Toast.LENGTH_SHORT).show()
         }
         
@@ -195,6 +220,10 @@ class SettingsActivity : AppCompatActivity() {
                 languageManager.setLocale(selectedLanguage)
                 
                 Toast.makeText(this, "Language changed to ${languages[which]}", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+                
+                // Recreate activity to apply language changes immediately
+                recreate()
                 dialog.dismiss()
             }
             .setNegativeButton("Cancel", null)

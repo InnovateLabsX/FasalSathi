@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.85"
-        android:background="@drawable/message_background_ai"
+        android:background="@android:color/holo_blue_light"
         android:orientation="vertical"
         android:padding="12dp">
 

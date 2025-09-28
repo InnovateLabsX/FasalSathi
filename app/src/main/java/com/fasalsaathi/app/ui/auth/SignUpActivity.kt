@@ -10,9 +10,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -20,6 +22,11 @@ import androidx.core.content.ContextCompat
 import com.fasalsaathi.app.R
 import com.fasalsaathi.app.FasalSaathiApplication
 import com.fasalsaathi.app.data.model.IndianCitiesData
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.random.Random
@@ -45,6 +52,9 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var ivProfilePhoto: ImageView
     private lateinit var btnSelectPhoto: Button
     private lateinit var tvPasswordStrength: TextView
+    private lateinit var btnGoogleSignUp: SignInButton
+    
+    private lateinit var googleSignInClient: GoogleSignInClient
     
     private var captchaAnswer: String = ""
     private var profileImageBitmap: Bitmap? = null
@@ -86,6 +96,16 @@ class SignUpActivity : AppCompatActivity() {
         ivProfilePhoto = findViewById(R.id.ivProfilePhoto)
         btnSelectPhoto = findViewById(R.id.btnSelectPhoto)
         tvPasswordStrength = findViewById(R.id.tvPasswordStrength)
+        btnGoogleSignUp = findViewById(R.id.btnGoogleSignUp)
+        
+        // Configure Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        
+        // Customize Google Sign-Up button
+        btnGoogleSignUp.setSize(SignInButton.SIZE_STANDARD)
     }
     
     private fun setupSpinners() {
@@ -212,6 +232,7 @@ class SignUpActivity : AppCompatActivity() {
         btnLogin.setOnClickListener { navigateToLogin() }
         btnRefreshCaptcha.setOnClickListener { generateNewCaptcha() }
         btnSelectPhoto.setOnClickListener { selectProfilePhoto() }
+        btnGoogleSignUp.setOnClickListener { signUpWithGoogle() }
     }
     
     private fun generateNewCaptcha() {
@@ -554,5 +575,75 @@ class SignUpActivity : AppCompatActivity() {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
         btnSignUp.isEnabled = !show
         btnLogin.isEnabled = !show
+        btnGoogleSignUp.isEnabled = !show
+    }
+    
+    private fun signUpWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        googleSignUpLauncher.launch(signInIntent)
+    }
+    
+    private val googleSignUpLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            if (account != null) {
+                handleGoogleSignUpSuccess(account.email ?: "", account.displayName ?: "")
+            }
+        } catch (e: ApiException) {
+            Log.w("SignUpActivity", "Google sign up failed", e)
+            Toast.makeText(this, "Google Sign-Up failed. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    private fun handleGoogleSignUpSuccess(email: String, displayName: String) {
+        showLoading(true)
+        
+        // Simulate processing delay
+        btnSignUp.postDelayed({
+            showLoading(false)
+            
+            // Save Google signup data
+            saveGoogleSignUpData(email, displayName)
+            
+            // Show success message and navigate
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.signup_successful))
+                .setMessage("Welcome, $displayName! Your account has been created successfully with Google Sign-In.")
+                .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                    // Navigate to dashboard directly since user is already signed up
+                    val intent = Intent(this, com.fasalsaathi.app.ui.dashboard.DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                .setCancelable(false)
+                .show()
+            
+        }, 1000)
+    }
+    
+    private fun saveGoogleSignUpData(email: String, displayName: String) {
+        val app = application as FasalSaathiApplication
+        val editor = app.sharedPreferences.edit()
+        
+        // Save basic user data from Google account
+        editor.putString("user_name", displayName)
+        editor.putString("user_email", email)
+        editor.putString("login_type", "google")
+        editor.putBoolean("is_logged_in", true)
+        
+        // Set default values for fields not available from Google
+        editor.putString("user_phone", "")
+        editor.putString("user_address", "")
+        editor.putString("user_state", "")
+        editor.putString("user_city", "")
+        editor.putString("user_farm_size", "")
+        editor.putBoolean("has_profile_photo", false)
+        editor.putBoolean("profile_completed", false) // Indicate profile needs completion
+        
+        editor.apply()
     }
 }

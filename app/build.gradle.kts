@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -58,6 +59,14 @@ dependencies {
     
     // Circle Image View for profile pictures
     implementation("de.hdodenhof:circleimageview:3.1.0")
+    
+    // Google Play Services for Location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation("com.google.firebase:firebase-bom:32.7.0")
     
     // For future AI enhancements (commented out for now)
     // implementation("org.tensorflow:tensorflow-lite:2.13.0")

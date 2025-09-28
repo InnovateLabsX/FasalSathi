@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">FasalSathi</string>
+    
+    <!-- Navigation -->
+    <string name="dashboard">ડેશબોર્ડ</string>
+    <string name="crop_recommendation">પાકની ભલામણ</string>
+    <string name="disease_detection">રોગ શોધ</string>
+    <string name="market_prices">બજાર ભાવ</string>
+    <string name="weather">હવામાન</string>
+    <string name="profile">પ્રોફાઇલ</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="support">સહાય</string>
+    
+    <!-- Common -->
+    <string name="welcome">સ્વાગત છે</string>
+    <string name="hello">નમસ્કાર</string>
+    <string name="good_morning">સુપ્રભાત</string>
+    <string name="good_afternoon">શુભ બપોર</string>
+    <string name="good_evening">શુભ સાંજ</string>
+    <string name="save">સેવ કરો</string>
+    <string name="cancel">રદ કરો</string>
+    <string name="ok">ઠીક છે</string>
+    <string name="yes">હા</string>
+    <string name="no">ના</string>
+    
+    <!-- Dashboard -->
+    <string name="todays_focus">આજનું ફોકસ</string>
+    <string name="smart_actions">સ્માર્ટ એક્શન</string>
+    <string name="smart_insights">સ્માર્ટ સમજ</string>
+    
+    <!-- Language Selection -->
+    <string name="select_language">ભાષા પસંદ કરો</string>
+    <string name="language_selected">ભાષા પસંદ કરાયેલ</string>
+    
+    <!-- Crop Recommendation -->
+    <string name="get_crop_recommendation">પાકની ભલામણ મેળવો</string>
+    <string name="soil_type">માટીનો પ્રકાર</string>
+    <string name="farm_size">ખેતરનું કદ</string>
+    <string name="location">સ્થાન</string>
+    
+    <!-- Weather -->
+    <string name="temperature">તાપમાન</string>
+    <string name="humidity">ભેજ</string>
+    <string name="wind_speed">પવનની ગતિ</string>
+    
+    <!-- Common Actions -->
+    <string name="refresh">રિફ્રેશ</string>
+    <string name="close">બંધ કરો</string>
+    <string name="share">શેર કરો</string>
+    <string name="edit">સંપાદિત કરો</string>
+    <string name="delete">કાઢી નાખો</string>
+</resources>

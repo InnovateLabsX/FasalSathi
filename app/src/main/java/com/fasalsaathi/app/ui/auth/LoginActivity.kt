@@ -4,13 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.fasalsaathi.app.R
 import com.fasalsaathi.app.ui.dashboard.DashboardActivity
 import com.fasalsaathi.app.FasalSaathiApplication
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
 import java.util.*
 import kotlin.random.Random
 
@@ -26,6 +33,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnRefreshCaptcha: ImageButton
     private lateinit var progressBar: ProgressBar
     private lateinit var cbRememberMe: CheckBox
+    private lateinit var btnGoogleSignIn: SignInButton
+    
+    private lateinit var googleSignInClient: GoogleSignInClient
     
     private var captchaAnswer: String = ""
     
@@ -50,6 +60,16 @@ class LoginActivity : AppCompatActivity() {
         btnRefreshCaptcha = findViewById(R.id.btnRefreshCaptcha)
         progressBar = findViewById(R.id.progressBar)
         cbRememberMe = findViewById(R.id.cbRememberMe)
+        btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn)
+        
+        // Configure Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        
+        // Customize Google Sign-In button
+        btnGoogleSignIn.setSize(SignInButton.SIZE_STANDARD)
     }
     
     private fun setupListeners() {
@@ -84,6 +104,7 @@ class LoginActivity : AppCompatActivity() {
         btnSignUp.setOnClickListener { navigateToSignUp() }
         tvForgotPassword.setOnClickListener { handleForgotPassword() }
         btnRefreshCaptcha.setOnClickListener { generateNewCaptcha() }
+        btnGoogleSignIn.setOnClickListener { signInWithGoogle() }
     }
     
     private fun generateNewCaptcha() {
@@ -251,9 +272,65 @@ class LoginActivity : AppCompatActivity() {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
         btnLogin.isEnabled = !show
         btnSignUp.isEnabled = !show
+        btnGoogleSignIn.isEnabled = !show
         etEmail.isEnabled = !show
         etPassword.isEnabled = !show
         etCaptcha.isEnabled = !show
         btnRefreshCaptcha.isEnabled = !show
+    }
+    
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        googleSignInLauncher.launch(signInIntent)
+    }
+    
+    private val googleSignInLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            if (account != null) {
+                handleGoogleSignInSuccess(account.email ?: "", account.displayName ?: "")
+            }
+        } catch (e: ApiException) {
+            Log.w("LoginActivity", "Google sign in failed", e)
+            Toast.makeText(this, "Google Sign-In failed. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    private fun handleGoogleSignInSuccess(email: String, displayName: String) {
+        showLoading(true)
+        
+        // Simulate processing delay
+        btnLogin.postDelayed({
+            showLoading(false)
+            
+            // Save Google login state
+            saveGoogleLoginState(email, displayName)
+            
+            // Navigate to dashboard
+            val intent = Intent(this, DashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+            
+            Toast.makeText(this, "Welcome, $displayName!", Toast.LENGTH_SHORT).show()
+        }, 1000)
+    }
+    
+    private fun saveGoogleLoginState(email: String, displayName: String) {
+        val app = application as FasalSaathiApplication
+        val editor = app.sharedPreferences.edit()
+        editor.putBoolean("is_logged_in", true)
+        editor.putString("user_email", email)
+        editor.putString("user_name", displayName)
+        editor.putString("login_type", "google")
+        
+        if (cbRememberMe.isChecked) {
+            editor.putString("remembered_email", email)
+        }
+        
+        editor.apply()
     }
 }

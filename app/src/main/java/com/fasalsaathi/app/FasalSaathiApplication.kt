@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.fasalsaathi.app.data.local.FasalSaathiDatabase
 import com.fasalsaathi.app.data.repository.UserRepository
 import com.fasalsaathi.app.utils.LanguageManager
+import com.fasalsaathi.app.utils.ThemeManager
 
 class FasalSaathiApplication : Application() {
     
@@ -41,9 +42,17 @@ class FasalSaathiApplication : Application() {
         LanguageManager(this)
     }
     
+    // Theme Manager
+    val themeManager by lazy {
+        ThemeManager(this)
+    }
+    
     override fun onCreate() {
         super.onCreate()
         instance = this
+        
+        // Initialize theme first (before UI is created)
+        themeManager.initializeTheme()
         
         // Initialize language
         languageManager.setLocale(languageManager.getCurrentLanguage())

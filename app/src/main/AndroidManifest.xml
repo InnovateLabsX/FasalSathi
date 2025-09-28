@@ -5,6 +5,8 @@
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -38,6 +40,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Language Selection Activity -->
+        <activity
+            android:name=".ui.language.LanguageSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi"
+            android:screenOrientation="portrait" />
             
         <!-- Auth Activities -->
         <activity
@@ -83,9 +92,27 @@
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
             
+        <!-- New Crop Recommendation Activity -->
+        <activity
+            android:name=".ui.crops.CropRecommendationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
         <!-- Disease Detection Activity -->
         <activity
             android:name=".ui.disease.DiseaseDetectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Market Activity -->
+        <activity
+            android:name=".ui.market.MarketActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Community Activity -->
+        <activity
+            android:name=".ui.community.CommunityActivity"
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
             
@@ -106,6 +133,17 @@
             android:name=".ui.profile.SettingsActivity"
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
+
+        <!-- File Provider for camera functionality -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.fasalsaathi.app.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- Network security config for API calls -->
         <meta-data
