@@ -1,0 +1,399 @@
+{
+  "rice": {
+    "optimal_conditions": {
+      "temperature": [
+        20,
+        35
+      ],
+      "humidity": [
+        70,
+        90
+      ],
+      "rainfall": [
+        1000,
+        2500
+      ],
+      "ph": [
+        5.5,
+        7.0
+      ],
+      "n": [
+        120,
+        200
+      ],
+      "p": [
+        30,
+        60
+      ],
+      "k": [
+        120,
+        180
+      ]
+    },
+    "regions": [
+      "all_india"
+    ],
+    "seasons": [
+      "kharif",
+      "rabi"
+    ],
+    "soil_types": [
+      "alluvial",
+      "black",
+      "red"
+    ],
+    "varieties": [
+      "basmati",
+      "non_basmati",
+      "aromatic"
+    ]
+  },
+  "wheat": {
+    "optimal_conditions": {
+      "temperature": [
+        10,
+        25
+      ],
+      "humidity": [
+        50,
+        70
+      ],
+      "rainfall": [
+        300,
+        800
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "n": [
+        100,
+        150
+      ],
+      "p": [
+        25,
+        50
+      ],
+      "k": [
+        100,
+        150
+      ]
+    },
+    "regions": [
+      "north_india",
+      "central_india"
+    ],
+    "seasons": [
+      "rabi"
+    ],
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "varieties": [
+      "durum",
+      "bread_wheat",
+      "dicoccum"
+    ]
+  },
+  "maize": {
+    "optimal_conditions": {
+      "temperature": [
+        18,
+        32
+      ],
+      "humidity": [
+        60,
+        80
+      ],
+      "rainfall": [
+        500,
+        1200
+      ],
+      "ph": [
+        5.8,
+        7.0
+      ],
+      "n": [
+        80,
+        140
+      ],
+      "p": [
+        20,
+        50
+      ],
+      "k": [
+        80,
+        120
+      ]
+    },
+    "regions": [
+      "all_india"
+    ],
+    "seasons": [
+      "kharif",
+      "rabi",
+      "summer"
+    ],
+    "soil_types": [
+      "alluvial",
+      "red",
+      "black"
+    ],
+    "varieties": [
+      "hybrid",
+      "composite",
+      "sweet_corn"
+    ]
+  },
+  "cotton": {
+    "optimal_conditions": {
+      "temperature": [
+        21,
+        35
+      ],
+      "humidity": [
+        50,
+        80
+      ],
+      "rainfall": [
+        500,
+        1000
+      ],
+      "ph": [
+        5.8,
+        8.2
+      ],
+      "n": [
+        60,
+        120
+      ],
+      "p": [
+        15,
+        40
+      ],
+      "k": [
+        60,
+        100
+      ]
+    },
+    "regions": [
+      "central_india",
+      "south_india",
+      "west_india"
+    ],
+    "seasons": [
+      "kharif"
+    ],
+    "soil_types": [
+      "black",
+      "alluvial",
+      "red"
+    ],
+    "varieties": [
+      "bt_cotton",
+      "hybrid",
+      "desi"
+    ]
+  },
+  "sugarcane": {
+    "optimal_conditions": {
+      "temperature": [
+        20,
+        40
+      ],
+      "humidity": [
+        75,
+        85
+      ],
+      "rainfall": [
+        1000,
+        2000
+      ],
+      "ph": [
+        6.0,
+        8.5
+      ],
+      "n": [
+        150,
+        250
+      ],
+      "p": [
+        40,
+        80
+      ],
+      "k": [
+        150,
+        250
+      ]
+    },
+    "regions": [
+      "north_india",
+      "south_india",
+      "west_india"
+    ],
+    "seasons": [
+      "annual"
+    ],
+    "soil_types": [
+      "alluvial",
+      "black",
+      "red"
+    ],
+    "varieties": [
+      "early_maturing",
+      "mid_late",
+      "ratoon"
+    ]
+  },
+  "soybean": {
+    "optimal_conditions": {
+      "temperature": [
+        20,
+        35
+      ],
+      "humidity": [
+        60,
+        80
+      ],
+      "rainfall": [
+        600,
+        1200
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "n": [
+        40,
+        80
+      ],
+      "p": [
+        20,
+        40
+      ],
+      "k": [
+        40,
+        80
+      ]
+    },
+    "regions": [
+      "central_india",
+      "west_india"
+    ],
+    "seasons": [
+      "kharif"
+    ],
+    "soil_types": [
+      "black",
+      "alluvial",
+      "red"
+    ],
+    "varieties": [
+      "early",
+      "medium",
+      "late"
+    ]
+  },
+  "groundnut": {
+    "optimal_conditions": {
+      "temperature": [
+        20,
+        35
+      ],
+      "humidity": [
+        60,
+        75
+      ],
+      "rainfall": [
+        500,
+        1000
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "n": [
+        20,
+        40
+      ],
+      "p": [
+        40,
+        80
+      ],
+      "k": [
+        60,
+        100
+      ]
+    },
+    "regions": [
+      "south_india",
+      "west_india",
+      "central_india"
+    ],
+    "seasons": [
+      "kharif",
+      "rabi"
+    ],
+    "soil_types": [
+      "red",
+      "alluvial",
+      "black"
+    ],
+    "varieties": [
+      "spanish",
+      "valencia",
+      "virginia"
+    ]
+  },
+  "sunflower": {
+    "optimal_conditions": {
+      "temperature": [
+        20,
+        30
+      ],
+      "humidity": [
+        50,
+        70
+      ],
+      "rainfall": [
+        400,
+        800
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "n": [
+        60,
+        100
+      ],
+      "p": [
+        30,
+        60
+      ],
+      "k": [
+        80,
+        120
+      ]
+    },
+    "regions": [
+      "south_india",
+      "central_india"
+    ],
+    "seasons": [
+      "rabi",
+      "kharif"
+    ],
+    "soil_types": [
+      "black",
+      "red",
+      "alluvial"
+    ],
+    "varieties": [
+      "hybrid",
+      "composite",
+      "dwarf"
+    ]
+  }
+}

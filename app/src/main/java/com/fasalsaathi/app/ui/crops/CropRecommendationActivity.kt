@@ -1,6 +1,7 @@
 package com.fasalsaathi.app.ui.crops
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -47,6 +48,7 @@ import java.util.Date
 import kotlin.random.Random
 import com.fasalsaathi.app.ml.MLModelManager
 import com.fasalsaathi.app.weather.WeatherApiService
+import com.fasalsaathi.app.ui.location.LocationPickerActivity
 
 class CropRecommendationActivity : AppCompatActivity() {
     
@@ -307,22 +309,57 @@ class CropRecommendationActivity : AppCompatActivity() {
         val irrigationAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, irrigationMethods)
         acIrrigation.setAdapter(irrigationAdapter)
         
-        // Setup city dropdown
-        val cityNames = indianCities.keys.toList().sorted()
-        val cityAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cityNames)
-        acCity.setAdapter(cityAdapter)
+        // Setup enhanced location picker (replaces limited city dropdown)
+        setupLocationPicker()
         
         // Setup irrigation method selection listener
         acIrrigation.setOnItemClickListener { _, _, position, _ ->
             val selectedMethod = irrigationMethods[position]
             updateIrrigationInfo(selectedMethod)
         }
+    }
+    
+    /**
+     * Setup enhanced location picker with unlimited city selection
+     */
+    private fun setupLocationPicker() {
+        // Make city field clickable to open location picker
+        acCity.isFocusable = false
+        acCity.isClickable = true
         
-        // Setup city selection listener
-        acCity.setOnItemClickListener { _, _, _, _ ->
-            val cityName = acCity.text.toString()
-            indianCities[cityName]?.let { cityData ->
-                autofillCityData(cityData)
+        acCity.setOnClickListener {
+            openLocationPicker()
+        }
+        
+        // Location picker is integrated through the city field click
+    }
+    
+    /**
+     * Open the enhanced location picker activity
+     */
+    private fun openLocationPicker() {
+        val intent = Intent(this, LocationPickerActivity::class.java)
+        locationPickerLauncher.launch(intent)
+    }
+    
+    /**
+     * Activity result launcher for location picker
+     */
+    private val locationPickerLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.let { data ->
+                val latitude = data.getDoubleExtra(LocationPickerActivity.EXTRA_LATITUDE, 0.0)
+                val longitude = data.getDoubleExtra(LocationPickerActivity.EXTRA_LONGITUDE, 0.0)
+                val cityName = data.getStringExtra(LocationPickerActivity.EXTRA_CITY_NAME) ?: "Unknown"
+                val address = data.getStringExtra(LocationPickerActivity.EXTRA_ADDRESS) ?: "Unknown Location"
+                
+                // Update UI with selected location
+                acCity.setText(cityName)
+                
+                // Fetch weather data for the selected location
+                updateLocationAndWeather(latitude, longitude, cityName, address)
             }
         }
     }
@@ -410,6 +447,96 @@ class CropRecommendationActivity : AppCompatActivity() {
         tvCurrentLocation.text = "${acCity.text} (${String.format("%.4f", cityData.latitude)}, ${String.format("%.4f", cityData.longitude)})"
         
         Toast.makeText(this, "Environmental data auto-filled for ${acCity.text}", Toast.LENGTH_SHORT).show()
+    }
+    
+    /**
+     * Enhanced location update with real-time weather data
+     */
+    private fun updateLocationAndWeather(latitude: Double, longitude: Double, cityName: String, address: String) {
+        lifecycleScope.launch {
+            try {
+                showLoading(true)
+                
+                // Update coordinates
+                etLatitude.setText(String.format("%.4f", latitude))
+                etLongitude.setText(String.format("%.4f", longitude))
+                
+                // Update location display
+                layoutLocationDisplay.visibility = View.VISIBLE
+                tvCurrentLocation.text = "$cityName (${String.format("%.4f", latitude)}, ${String.format("%.4f", longitude)})"
+                
+                // Get real-time weather data
+                try {
+                    val weatherData = weatherApiService.getWeatherData(latitude, longitude)
+                    weatherData?.let { data ->
+                        // Update environmental parameters with real data
+                        etTemperature.setText(String.format("%.1f", data.currentTemperature))
+                        etHumidity.setText(String.format("%.0f", data.currentHumidity))
+                    } ?: run {
+                        // Fallback to regional averages if no weather data
+                        useRegionalWeatherDefaults(latitude, longitude)
+                    }
+                } catch (e: Exception) {
+                    // Fallback to regional averages if weather service fails
+                    useRegionalWeatherDefaults(latitude, longitude)
+                }
+                
+                // Use regional rainfall estimate
+                val regionalRainfall = getRegionalRainfall(latitude, longitude)
+                etRainfall.setText(String.format("%.0f", regionalRainfall))
+                
+                Toast.makeText(
+                    this@CropRecommendationActivity,
+                    "Location data updated for $cityName",
+                    Toast.LENGTH_SHORT
+                ).show()
+                
+            } catch (e: Exception) {
+                // Fallback for any errors
+                useRegionalWeatherDefaults(latitude, longitude)
+                Toast.makeText(
+                    this@CropRecommendationActivity,
+                    "Location selected: $cityName (limited weather data available)",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } finally {
+                showLoading(false)
+            }
+        }
+    }
+    
+    /**
+     * Get regional rainfall average based on coordinates
+     */
+    private fun getRegionalRainfall(lat: Double, lng: Double): Double {
+        return when {
+            lat > 25 && lng > 85 -> 1800.0 // Northeast: high rainfall
+            lat > 20 && lng < 75 -> 600.0  // Northwest: low rainfall  
+            lat < 15 && lng > 75 -> 1200.0 // South: moderate-high rainfall
+            lat > 20 && lng in 75.0..85.0 -> 900.0 // Central: moderate rainfall
+            else -> 800.0 // Default moderate rainfall
+        }
+    }
+    
+    /**
+     * Use regional weather defaults when real-time data unavailable
+     */
+    private fun useRegionalWeatherDefaults(lat: Double, lng: Double) {
+        val regionTemp = when {
+            lat > 30 -> 22.0 // Northern regions: cooler
+            lat < 15 -> 28.0 // Southern regions: warmer
+            else -> 25.0     // Central regions: moderate
+        }
+        
+        val regionHumidity = when {
+            lng < 75 -> 55.0  // Western regions: drier
+            lng > 85 -> 80.0  // Eastern regions: more humid
+            else -> 65.0      // Central regions: moderate
+        }
+        
+        etTemperature.setText(String.format("%.1f", regionTemp))
+        etHumidity.setText(String.format("%.0f", regionHumidity))
+        etRainfall.setText(String.format("%.0f", getRegionalRainfall(lat, lng)))
     }
     
     private fun checkLocationPermissionAndGetLocation() {

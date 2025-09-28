@@ -98,6 +98,14 @@
             android:exported="false"
             android:theme="@style/Theme.FasalSaathi" />
             
+        <!-- Enhanced Location Picker Activity -->
+        <activity
+            android:name=".ui.location.LocationPickerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi"
+            android:label="Select Location"
+            android:parentActivityName=".ui.crops.CropRecommendationActivity" />
+            
         <!-- Disease Detection Activity -->
         <activity
             android:name=".ui.disease.DiseaseDetectionActivity"
