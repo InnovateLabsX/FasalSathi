@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Green-Blue Gradient Theme -->
+    <!-- Light to Dark Gradient Colors -->
+    <color name="modern_light_1">#D9ED92</color>      <!-- Lightest green -->
+    <color name="modern_light_2">#B5E48C</color>      <!-- Light green -->
+    <color name="modern_light_3">#99D98C</color>      <!-- Light 3 -->
+    <color name="modern_medium_1">#99D98C</color>     <!-- Medium light green -->
+    <color name="modern_medium_2">#76C893</color>     <!-- Medium green -->
+    <color name="modern_medium_3">#52B69A</color>     <!-- Medium green-blue -->
+    <color name="modern_medium_4">#34A0A4</color>     <!-- Medium blue-green -->
+    <color name="modern_dark_1">#168AAD</color>       <!-- Medium blue -->
+    <color name="modern_dark_2">#1A759F</color>       <!-- Dark blue -->
+    <color name="modern_dark_3">#1E6091</color>       <!-- Darker blue -->
+    <color name="modern_dark_4">#184E77</color>       <!-- Darkest blue -->
+    
+    <!-- Primary Colors (New Modern Theme) -->
+    <color name="primary_green">#52B69A</color>        <!-- Primary brand color -->
+    <color name="primary_green_dark">#34A0A4</color>   <!-- Primary dark variant -->
+    <color name="primary_green_light">#76C893</color>  <!-- Primary light variant -->
+    <color name="primary_dark">#184E77</color>         <!-- Primary dark -->
+    
+    <!-- Secondary Colors -->
+    <color name="secondary_blue">#168AAD</color>       <!-- Secondary blue -->
+    <color name="secondary_blue_dark">#1A759F</color>  <!-- Secondary blue dark -->
+    <color name="secondary_blue_light">#34A0A4</color> <!-- Secondary blue light -->
+    
+    <!-- Accent Colors -->
+    <color name="accent_light">#D9ED92</color>         <!-- Accent light -->
+    <color name="accent_medium">#99D98C</color>        <!-- Accent medium -->
+    <color name="accent_bright">#B5E48C</color>        <!-- Accent bright -->
+    <color name="accent_yellow">#F4A261</color>        <!-- Legacy support -->
+    <color name="accent_yellow_dark">#E76F51</color>   <!-- Legacy support -->
+    <color name="accent_yellow_light">#F9C784</color>  <!-- Legacy support -->
+    
+    <!-- Background Colors -->
+    <color name="background_light">#FAFBFC</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_card">#F8FFFE</color>
+    <color name="background_surface">#F0F9F7</color>
+    
+    <!-- Surface Colors -->
+    <color name="surface_light">#E8F6F3</color>
+    <color name="surface_medium">#D0F0E8</color>
+    <color name="surface_dark">#B8E6D7</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#1A2B2E</color>         <!-- Dark text -->
+    <color name="text_secondary">#4A5C5E</color>       <!-- Secondary text -->
+    <color name="text_hint">#8FA6A8</color>            <!-- Hint text -->
+    <color name="text_on_primary">#FFFFFF</color>      <!-- Text on primary -->
+    <color name="text_on_surface">#1A2B2E</color>      <!-- Text on surface -->
+    <color name="white_transparent">#CCFFFFFF</color>
+    
+    <!-- Navigation Colors -->
+    <color name="nav_background">#FFFFFF</color>
+    <color name="nav_icon_active">#34A0A4</color>
+    <color name="nav_icon_inactive">#8FA6A8</color>
+    <color name="nav_text_active">#1A2B2E</color>
+    <color name="nav_text_inactive">#4A5C5E</color>
+    <color name="nav_indicator">#E8F6F3</color>
+    
+    <!-- Status Colors -->
+    <color name="success_green">#52B69A</color>
+    <color name="warning_orange">#F4A261</color>
+    <color name="error_red">#E76F51</color>
+    <color name="info_blue">#168AAD</color>
+    
+    <!-- Agricultural Specific Colors (Updated) -->
+    <color name="soil_brown">#8D5524</color>
+    <color name="leaf_green">#76C893</color>
+    <color name="crop_gold">#F4A261</color>
+    <color name="water_blue">#168AAD</color>
+    <color name="sun_orange">#F4A261</color>
+    
+    <!-- UV Index Colors (Updated) -->
+    <color name="uv_low">#52B69A</color>      <!-- 0-2: Low (Green) -->
+    <color name="uv_moderate">#99D98C</color> <!-- 3-5: Moderate (Light Green) -->
+    <color name="uv_high">#F4A261</color>     <!-- 6-7: High (Orange) -->
+    <color name="uv_very_high">#E76F51</color><!-- 8-10: Very High (Red) -->
+    <color name="uv_extreme">#C73E1D</color>  <!-- 11+: Extreme (Dark Red) -->
+    
+    <!-- Soil Moisture Colors (Updated) -->
+    <color name="soil_dry">#E76F51</color>      <!-- 0-20%: Dry (Red) -->
+    <color name="soil_low">#F4A261</color>      <!-- 21-40%: Low (Orange) -->
+    <color name="soil_moderate">#99D98C</color> <!-- 41-60%: Moderate (Light Green) -->
+    <color name="soil_good">#52B69A</color>     <!-- 61-80%: Good (Medium Green) -->
+    <color name="soil_wet">#168AAD</color>      <!-- 81-100%: Wet (Blue) -->
+    <color name="soil_saturated">#1A759F</color><!-- 81-100%: Saturated (Dark Blue) -->
+    
+    <!-- Modern Transparency Colors -->
+    <color name="overlay_dark">#80184E77</color>     <!-- Dark overlay with brand color -->
+    <color name="overlay_light">#4052B69A</color>   <!-- Light overlay with brand color -->
+    <color name="glass_effect">#1AFFFFFF</color>    <!-- Glass morphism effect -->
+    
+    <!-- Standard Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    
+    <!-- Modern Card Colors -->
+    <color name="card_crop_recommendation">#E8F6F3</color>      <!-- Light green tint -->
+    <color name="card_disease_detection">#F0F9F7</color>       <!-- Very light green -->
+    <color name="card_market_prices">#E1F3F6</color>           <!-- Light blue-green -->
+    <color name="card_weather">#E6F5F8</color>                 <!-- Light blue -->
+    <color name="card_ai_assistant">#F4FCFA</color>            <!-- Ultra light green -->
+    
+    <!-- Modern Gradient Colors -->
+    <color name="gradient_start">#D9ED92</color>               <!-- Light gradient start -->
+    <color name="gradient_middle">#52B69A</color>              <!-- Middle gradient -->
+    <color name="gradient_end">#184E77</color>                 <!-- Dark gradient end -->
+    <color name="gradient_primary_start">#76C893</color>       <!-- Primary gradient start -->
+    <color name="gradient_primary_end">#34A0A4</color>         <!-- Primary gradient end -->
+    
+    <!-- Modern UI Element Colors -->
+    <color name="button_primary">#52B69A</color>
+    <color name="button_primary_pressed">#34A0A4</color>
+    <color name="button_secondary">#168AAD</color>
+    <color name="button_accent">#99D98C</color>
+    <color name="switch_thumb_color">#52B69A</color>
+    <color name="switch_track_color">#D0F0E8</color>
+    <color name="bottom_nav_color">#4A5C5E</color>
+    <color name="divider_color">#D0F0E8</color>
+    <color name="ripple_color">#4052B69A</color>               <!-- Ripple effect -->
+    
+    <!-- Modern Elevation Colors -->
+    <color name="elevation_1">#F8FFFE</color>                  <!-- 1dp elevation -->
+    <color name="elevation_2">#F5FDFC</color>                  <!-- 2dp elevation -->
+    <color name="elevation_3">#F2FBFA</color>                  <!-- 3dp elevation -->
+    
+    <!-- Feature Specific Colors -->
+    <color name="weather_sunny">#F4A261</color>
+    <color name="weather_cloudy">#8FA6A8</color>
+    <color name="weather_rainy">#168AAD</color>
+    <color name="crop_healthy">#52B69A</color>
+    <color name="crop_warning">#F4A261</color>
+    <color name="crop_disease">#E76F51</color>
+</resources>

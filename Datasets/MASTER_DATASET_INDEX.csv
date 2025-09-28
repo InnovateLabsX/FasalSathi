@@ -1,0 +1,10 @@
+Dataset_Name,Category,Records,Description,Contains_SHC_12_Parameters
+realistic_crop_soil_dataset.csv,Main Data,2500,🌟 BEST: Realistic soil-crop correlations for production ML,Yes
+ml_soil_health_dataset.csv,Main Data,3000,Extended dataset for ML training with 28 crop varieties,Yes
+sample_soil_health_card_data.csv,Main Data,100,Template showing proper Soil Health Card structure,Yes
+indian_govt_agriculture_apis.csv,Government APIs,10,Complete API reference for government data,Reference
+indian_govt_dataset_links.csv,Government Links,10,Direct links to government agricultural datasets,Reference
+final_model_feature_importance.csv,Analysis,15,Feature importance from 83.6% accuracy AI model,N/A
+ai_crop_recommendation_implementation_guide.csv,Implementation,10,Implementation components and system architecture,N/A
+QUICK_ACCESS_REFERENCE.csv,Reference,6,Quick reference to key components,N/A
+MASTER_DATASET_INDEX.csv,Index,9,This comprehensive index of all datasets,N/A

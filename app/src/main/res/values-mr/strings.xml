@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">FasalSathi</string>
+    
+    <!-- Navigation -->
+    <string name="dashboard">डॅशबोर्ड</string>
+    <string name="crop_recommendation">पिक शिफारस</string>
+    <string name="disease_detection">रोग शोध</string>
+    <string name="market_prices">बाजार दर</string>
+    <string name="weather">हवामान</string>
+    <string name="profile">प्रोफाइल</string>
+    <string name="settings">सेटिंग्ज</string>
+    <string name="support">मदत</string>
+    
+    <!-- Common -->
+    <string name="welcome">स्वागत</string>
+    <string name="hello">नमस्कार</string>
+    <string name="good_morning">शुभ सकाळ</string>
+    <string name="good_afternoon">शुभ दुपार</string>
+    <string name="good_evening">शुभ संध्याकाळ</string>
+    <string name="save">सेव्ह करा</string>
+    <string name="cancel">रद्द करा</string>
+    <string name="ok">ठीक आहे</string>
+    <string name="yes">होय</string>
+    <string name="no">नाही</string>
+    
+    <!-- Dashboard -->
+    <string name="todays_focus">आजचा फोकस</string>
+    <string name="smart_actions">स्मार्ट अॅक्शन्स</string>
+    <string name="smart_insights">स्मार्ट अंतर्दृष्टी</string>
+    
+    <!-- Language Selection -->
+    <string name="select_language">भाषा निवडा</string>
+    <string name="language_selected">भाषा निवडली</string>
+    
+    <!-- Crop Recommendation -->
+    <string name="get_crop_recommendation">पिकांची शिफारस घ्या</string>
+    <string name="soil_type">मातीचा प्रकार</string>
+    <string name="farm_size">शेताचा आकार</string>
+    <string name="location">स्थान</string>
+    
+    <!-- Weather -->
+    <string name="temperature">तापमान</string>
+    <string name="humidity">आर्द्रता</string>
+    <string name="wind_speed">वाऱ्याचा वेग</string>
+    
+    <!-- Common Actions -->
+    <string name="refresh">रीफ्रेश</string>
+    <string name="close">बंद करा</string>
+    <string name="share">शेअर करा</string>
+    <string name="edit">संपादित करा</string>
+    <string name="delete">हटवा</string>
+</resources>

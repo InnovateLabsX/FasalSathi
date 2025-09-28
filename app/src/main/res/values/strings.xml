@@ -1,0 +1,304 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">FasalSathi</string>
+    <string name="app_tagline">Your Smart Farming Companion</string>
+    
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    
+    <!-- Authentication -->
+    <string name="login">Login</string>
+    <string name="login_title">Welcome Back</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="full_name">Full Name</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_phone">Login with Phone</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="or">OR</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    
+    <!-- Login/Signup Page Enhancement Text -->
+    <string name="login_welcome_message">Welcome to your smart farming companion! Sign in to access personalized crop recommendations, weather insights, and AI-powered agricultural guidance.</string>
+    <string name="login_benefits_text">Get real-time weather updates • AI crop recommendations • Disease detection • Market price insights</string>
+    <string name="email_hint_text">Enter your registered email address</string>
+    <string name="password_hint_text">Enter your secure password</string>
+    <string name="captcha_help_text">Solve the math problem to verify you\'re human</string>
+    <string name="remember_me_help">Keep me signed in on this device</string>
+    <string name="login_button_help">All fields must be completed to enable login</string>
+    <string name="signup_welcome_message">Join thousands of farmers using smart technology to maximize their harvest and profits!</string>
+    <string name="signup_benefits_text">AI-powered insights • Real-time weather • Disease prevention • Market analysis • Expert support</string>
+    <string name="profile_photo_help">Add your photo to personalize your farming profile</string>
+    <string name="full_name_help">Enter your complete name as it appears on official documents</string>
+    <string name="email_signup_help">Use a valid email - this will be your login username</string>
+    <string name="phone_help">10-digit mobile number for important farming alerts</string>
+    <string name="location_help">Select your state and district for localized farming advice</string>
+    <string name="farm_size_help">Choose your farm size category for personalized recommendations</string>
+    <string name="address_help">Optional: Add your farm address for precise weather data</string>
+    <string name="password_requirements">Password must be at least 8 characters with letters and numbers</string>
+    <string name="terms_and_privacy">By creating an account, you agree to our Terms of Service and Privacy Policy. Your data is secure and never shared.</string>
+    <string name="login_footer">Need help? Contact our 24/7 farmer support team</string>
+    
+    <!-- Dashboard -->
+    <string name="welcome_back">Welcome back</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="crop_recommendation">Crop Recommendation</string>
+    <string name="disease_detection">Disease Detection</string>
+    <string name="market_prices">Market Prices</string>
+    <string name="weather">Weather</string>
+    <string name="community">Community</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="support">Support</string>
+    <string name="todays_focus">Today\'s Focus</string>
+    <string name="smart_actions">Smart Actions</string>
+    <string name="smart_insights">Smart Insights</string>
+    <string name="view_reports">View reports</string>
+    <string name="dashboard_insight_tagline">Smart insights tailored for your farm today</string>
+    <string name="dashboard_manage_button">Manage</string>
+    <string name="dashboard_soil_moisture_chip">Soil moisture 68%</string>
+    <string name="dashboard_irrigation_chip">Irrigation due in 2 hrs</string>
+    <string name="focus_soil_health">Soil Health</string>
+    <string name="focus_pest_watch">Pest Watch</string>
+    <string name="focus_market_rates">Market Rates</string>
+    <string name="focus_water_usage">Water Usage</string>
+    <string name="action_ai_suggestion_subtitle">Get AI suggestions</string>
+    <string name="action_disease_scan_subtitle">Scan leaves instantly</string>
+    <string name="action_profile_subtitle">Manage your account</string>
+    <string name="action_ai_assistant_subtitle">Get farming advice</string>
+    <string name="action_weather_subtitle">Plan field work</string>
+    <string name="insight_soil_moisture">Soil Moisture</string>
+    <string name="insight_soil_moisture_value">68% • Optimal</string>
+    <string name="insight_market_price">Market Price</string>
+    <string name="insight_market_price_delta">Wheat ↑ 3.2%</string>
+    <string name="insight_market_price_value">₹ 2,150 / quintal</string>
+    
+    <!-- Crop Recommendation -->
+    <string name="get_crop_recommendation">Get Crop Recommendation</string>
+    <string name="soil_type">Soil Type</string>
+    <string name="nitrogen_level">Nitrogen Level</string>
+    <string name="phosphorus_level">Phosphorus Level</string>
+    <string name="potassium_level">Potassium Level</string>
+    <string name="ph_level">pH Level</string>
+    <string name="rainfall">Rainfall (mm)</string>
+    <string name="temperature">Temperature (°C)</string>
+    <string name="humidity">Humidity (%)</string>
+    <string name="location">Location</string>
+    <string name="previous_crop">Previous Crop</string>
+    <string name="farming_experience">Farming Experience (years)</string>
+    <string name="farm_size">Farm Size (acres)</string>
+    <string name="recommend_crops">Recommend Crops</string>
+    
+    <!-- Disease Detection -->
+    <string name="detect_plant_disease">Detect Plant Disease</string>
+    <string name="upload_plant_image">Upload Plant Image</string>
+    <string name="analyzing_image">Analyzing image...</string>
+    <string name="disease_detected">Disease Detected</string>
+    <string name="no_disease_detected">No disease detected</string>
+    <string name="treatment_suggestions">Treatment Suggestions</string>
+    <string name="prevention_tips">Prevention Tips</string>
+    
+    <!-- Market Prices -->
+    <string name="todays_market_prices">Today\'s Market Prices</string>
+    <string name="select_crop">Select Crop</string>
+    <string name="select_market">Select Market</string>
+    <string name="price_per_quintal">Price per Quintal (₹)</string>
+    <string name="market_trends">Market Trends</string>
+    <string name="price_alerts">Price Alerts</string>
+    
+    <!-- Weather -->
+    <string name="weather_forecast">Weather Forecast</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="temperature_range">Temperature Range</string>
+    <string name="rainfall_prediction">Rainfall Prediction</string>
+    <string name="humidity_level">Humidity Level</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="weather_alerts">Weather Alerts</string>
+    
+    <!-- Profile -->
+    <string name="my_profile">My Profile</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="farm_details">Farm Details</string>
+    <string name="language_preference">Language Preference</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="history">History</string>
+    <string name="recommendations_history">Recommendations History</string>
+    <string name="disease_detection_history">Disease Detection History</string>
+    
+    <!-- Language -->
+    <string name="select_language">Select Language</string>
+    <string name="english">English</string>
+    <string name="hindi">हिंदी</string>
+    <string name="hinglish">Hinglish</string>
+    
+    <!-- Offline -->
+    <string name="offline_mode">Offline Mode</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="data_will_sync_when_online">Data will sync when you\'re back online</string>
+    <string name="offline_data_available">Offline data available</string>
+    
+    <!-- Notifications -->
+    <string name="notifications">Notifications</string>
+    <string name="weather_alerts_enabled">Weather Alerts</string>
+    <string name="price_alerts_enabled">Price Alerts</string>
+    <string name="crop_recommendations_enabled">Crop Recommendations</string>
+    <string name="disease_alerts_enabled">Disease Alerts</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Welcome to FasalSathi</string>
+    <string name="onboarding_desc_1">Your smart farming companion powered by AI</string>
+    <string name="onboarding_title_2">Get Crop Recommendations</string>
+    <string name="onboarding_desc_2">AI-powered suggestions based on your soil, weather, and location</string>
+    <string name="onboarding_title_3">Detect Plant Diseases</string>
+    <string name="onboarding_desc_3">Take a photo and get instant disease diagnosis with treatment</string>
+    <string name="onboarding_title_4">Stay Updated</string>
+    <string name="onboarding_desc_4">Real-time market prices and weather forecasts</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    
+    <!-- Errors and Messages -->
+        <string name="google_sign_in_error">Google Sign-In failed. Please try again.</string>
+    <string name="network_error">Network connection error. Please check your connection.</string>
+    <string name="authentication_error">Authentication failed. Please verify your credentials.</string>
+    
+    <!-- Loading and Feedback Messages -->
+    <string name="loading_message">Please wait...</string>
+    <string name="success_title">Success</string>
+    <string name="error_title">Error</string>
+    <string name="warning_title">Warning</string>
+    <string name="info_title">Information</string>
+    <string name="success_message">Operation completed successfully</string>
+    <string name="error_message">Something went wrong. Please try again.</string>
+    <string name="warning_message">Please review the information provided</string>
+    <string name="info_message">Here\'s some information for you</string>
+    
+    <!-- Accessibility Feedback -->
+    <string name="content_desc_feedback_icon">Feedback status icon</string>
+    <string name="content_desc_close_feedback">Close feedback message</string>
+    
+    <!-- Additional Error Messages -->
+    <string name="error_invalid_credentials">Invalid credentials. Please try again.</string>
+    <string name="error_registration_failed">Registration failed. Please try again.</string>
+    <string name="error_image_processing">Error processing image. Please try again.</string>
+    <string name="error_location_permission">Location permission required for accurate recommendations.</string>
+    <string name="error_camera_permission">Camera permission required to take photos.</string>
+    <string name="error_storage_permission">Storage permission required to save images.</string>
+    
+    <!-- Success Messages -->
+    <string name="success_registration">Account created successfully!</string>
+    <string name="success_login">Login successful!</string>
+    <string name="success_profile_updated">Profile updated successfully!</string>
+    <string name="success_recommendation_saved">Recommendation saved!</string>
+    
+    <!-- Chat/Support -->
+    <string name="chat_with_ai">Chat with AI Assistant</string>
+    <string name="ask_question">Ask a question...</string>
+    <string name="voice_input">Voice Input</string>
+    <string name="help_center">Help Center</string>
+    <string name="faq">FAQ</string>
+    <string name="contact_support">Contact Support</string>
+    
+    <!-- IoT Integration -->
+    <string name="iot_devices">IoT Devices</string>
+    <string name="connect_sensor">Connect Sensor</string>
+    <string name="soil_sensor">Soil Sensor</string>
+    <string name="weather_station">Weather Station</string>
+    <string name="device_connected">Device Connected</string>
+    <string name="device_disconnected">Device Disconnected</string>
+    
+    <!-- Content Descriptions for Accessibility -->
+    <string name="cd_app_logo">FasalSathi App Logo</string>
+    <string name="cd_user_avatar">User Profile Picture</string>
+    <string name="cd_crop_image">Crop Image</string>
+    <string name="cd_disease_image">Plant Disease Image</string>
+    <string name="cd_weather_icon">Weather Icon</string>
+    <string name="cd_navigation_drawer">Navigation Drawer</string>
+    <string name="cd_back_button">Back Button</string>
+    <string name="cd_menu_button">Menu Button</string>
+    
+    <!-- Navigation Header -->
+    <string name="nav_header_title">FasalSathi</string>
+    <string name="nav_header_subtitle">Empowering Farmers with AI</string>
+    <string name="nav_header_desc">Navigation header</string>
+    
+    <!-- New Authentication Strings -->
+    <string name="create_farmer_account">Create Farmer Account</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="enter_captcha_answer">Enter CAPTCHA answer</string>
+    <string name="refresh_captcha">Refresh CAPTCHA</string>
+    <string name="agree_terms_conditions">I agree to the Terms and Conditions</string>
+    <string name="address_optional">Address (Optional)</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="photo_selected">Photo Selected ✓</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="select_profile_photo">Select Profile Photo</string>
+    <string name="app_footer">© 2025 FasalSathi - Empowering Farmers with Technology</string>
+    <string name="signup_footer">Join thousands of farmers using FasalSathi</string>
+    
+    <!-- Validation Errors -->
+    <string name="error_name_required">Name is required</string>
+    <string name="error_name_too_short">Name must be at least 2 characters</string>
+    <string name="error_name_invalid_characters">Name can only contain letters and spaces</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_phone_required">Phone number is required</string>
+    <string name="error_phone_invalid_length">Phone number must be 10 digits</string>
+    <string name="error_phone_invalid_characters">Phone number can only contain digits</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="error_password_too_short_signup">Password must be at least 8 characters</string>
+    <string name="error_password_weak">Password must contain uppercase, lowercase, and numbers</string>
+    <string name="error_confirm_password_required">Please confirm your password</string>
+    <string name="error_passwords_dont_match">Passwords do not match</string>
+    <string name="error_invalid_captcha">Invalid CAPTCHA answer</string>
+    <string name="error_login_failed">Login failed. Please check your credentials</string>
+    
+    <!-- Password Strength -->
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_medium">Medium</string>
+    <string name="password_strength_strong">Strong</string>
+    
+    <!-- Messages -->
+    <string name="enter_valid_email_first">Please enter a valid email address first</string>
+    <string name="password_reset_sent">Password reset link sent to %s</string>
+    <string name="signup_successful">Account Created Successfully!</string>
+    <string name="signup_success_message">Your farmer account has been created. You can now login and start using FasalSathi.</string>
+    <string name="camera_permission_required">Camera permission is required to take photos</string>
+    <string name="storage_permission_required">Storage permission is required to access gallery</string>
+    <string name="error_loading_image">Error loading image. Please try again.</string>
+    
+    <!-- Common Greetings and Actions -->
+    <string name="welcome">Welcome</string>
+    <string name="hello">Hello</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
+    <string name="refresh">Refresh</string>
+    <string name="close">Close</string>
+    <string name="language_selected">Language Selected</string>
+    
+    <!-- Divider -->
+    <string name="divider_color">divider_color</string>
+</resources>

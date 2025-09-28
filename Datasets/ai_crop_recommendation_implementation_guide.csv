@@ -1,0 +1,11 @@
+System_Component,Required_Datasets,Key_Data_Sources
+Data Collection Module,"IMD APIs, Soil Health Cards, Crop Statistics, Market Prices","IMD APIs, data.gov.in, AGMARKNET, Soil Health Portal"
+Soil Analysis Module,"NBSS&LUP Soil Data, SHC Portal, pH/NPK/Micronutrient data","https://soilhealth.dac.gov.in, https://bhoomigeoportal-nbsslup.in"
+Weather Integration Module,"IMD Weather APIs, Agromet Services, Historical Climate Data","https://mausam.imd.gov.in/api/, https://imdagrimet.gov.in"
+Crop Database Module,"DES Crop Statistics, ICAR Data, Area-Production-Yield datasets","https://desagri.gov.in, https://aps.dac.gov.in, https://krishi.icar.gov.in"
+Market Intelligence Module,"AGMARKNET, e-NAM, APEDA Export data, Price trends","http://agmarknet.gov.in, https://enam.gov.in, https://agriexchange.apeda.gov.in"
+Recommendation Engine,All integrated datasets for ML model training and inference,Machine Learning algorithms using integrated government datasets
+User Interface Module,"Farmer registration, location services, recommendation display","Mobile app, web portal, SMS services integration"
+Data Processing Pipeline,"Data cleaning, normalization, feature engineering pipelines","Python/R scripts, ETL processes, data validation"
+Model Training Module,"Historical data for supervised learning, crop-yield correlations","Scikit-learn, TensorFlow, crop yield prediction models"
+Deployment & Monitoring,"Model deployment, performance monitoring, data refresh","Cloud platforms, API monitoring, automated data updates"

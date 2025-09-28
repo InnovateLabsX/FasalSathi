@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Authentication Strings -->
+    <string name="content_desc_google_sign_in">Sign in with Google account</string>
+    <string name="content_desc_email_input">Enter your email address</string>
+    <string name="content_desc_password_input">Enter your password</string>
+    <string name="content_desc_confirm_password_input">Confirm your password</string>
+    <string name="content_desc_login_button">Login to your account</string>
+    <string name="content_desc_signup_button">Create new account</string>
+    
+    <!-- Navigation Strings -->
+    <string name="content_desc_back_button">Go back to previous screen</string>
+    <string name="content_desc_menu_button">Open navigation menu</string>
+    <string name="content_desc_home_icon">Navigate to home screen</string>
+    <string name="content_desc_profile_icon">View user profile</string>
+    <string name="content_desc_settings_icon">Open settings</string>
+    
+    <!-- Dashboard Strings -->
+    <string name="content_desc_weather_card">View current weather information</string>
+    <string name="content_desc_ai_chat_card">Start AI conversation for farming advice</string>
+    <string name="content_desc_crop_monitoring_card">Monitor your crop health</string>
+    <string name="content_desc_market_prices_card">Check current market prices</string>
+    
+    <!-- Chat Strings -->
+    <string name="content_desc_message_input">Type your message here</string>
+    <string name="content_desc_send_button">Send message</string>
+    <string name="content_desc_voice_input_button">Record voice message</string>
+    <string name="content_desc_stop_voice_button">Stop voice recording</string>
+    
+    <!-- General UI Strings -->
+    <string name="content_desc_loading">Loading content, please wait</string>
+    <string name="content_desc_refresh_button">Refresh current data</string>
+    <string name="content_desc_close_dialog">Close dialog</string>
+    <string name="content_desc_expand_card">Expand for more details</string>
+    <string name="content_desc_collapse_card">Collapse details</string>
+    
+    <!-- Error and Success Messages -->
+    <string name="accessibility_announcement_login_success">Login successful</string>
+    <string name="accessibility_announcement_login_failed">Login failed, please try again</string>
+    <string name="accessibility_announcement_data_loaded">Data loaded successfully</string>
+    <string name="accessibility_announcement_network_error">Network connection error</string>
+    
+</resources>

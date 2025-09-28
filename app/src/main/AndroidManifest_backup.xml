@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/        <!-- Disease Detection Activity -->
+        <activity
+            android:name=".ui.disease.DiseaseDetectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- FAQ Activity -->
+        <activity
+            android:name=".ui.faq.FaqActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Profile Activity -->
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Settings Activity -->
+        <activity
+            android:name=".ui.profile.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions for FasalSaathi -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- Camera feature -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <application
+        android:name=".FasalSaathiApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_launcher_legacy"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_legacy"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FasalSaathi"
+        tools:targetApi="31">
+        
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FasalSaathi">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+
+        <!-- Auth Activities -->
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi"
+            android:screenOrientation="portrait" />
+            
+        <!-- Onboarding Activity -->
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Dashboard Activity -->
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Crop Recommendation Activity -->
+        <activity
+            android:name=".ui.crop.CropRecommendationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Disease Detection Activity -->
+        <activity
+            android:name=".ui.disease.DiseaseDetectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Market Prices Activity -->
+        <activity
+            android:name=".ui.market.MarketPricesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Weather Activity -->
+        <activity
+            android:name=".ui.weather.WeatherActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Profile Activity -->
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Settings Activity -->
+        <activity
+            android:name=".ui.profile.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FasalSaathi" />
+            
+        <!-- Firebase Messaging Service -->
+        <service
+            android:name=".services.FasalSaathiFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        
+        <!-- Background Sync Service -->
+        <service
+            android:name=".services.BackgroundSyncService"
+            android:exported="false" />
+            
+        <!-- File Provider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/spacing_medium"
+    android:background="@android:color/white"
+    android:layout_margin="@dimen/spacing_medium">
+    
+    <ImageView
+        android:id="@+id/feedbackIcon"
+        android:layout_width="@dimen/icon_size_medium"
+        android:layout_height="@dimen/icon_size_medium"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:src="@drawable/ic_success"
+        android:contentDescription="@string/content_desc_feedback_icon" />
+    
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        
+        <TextView
+            android:id="@+id/feedbackTitle"
+            style="@style/FasalSaathi.Text.Subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/success_title"
+            android:textStyle="bold" />
+            
+        <TextView
+            android:id="@+id/feedbackMessage"
+            style="@style/FasalSaathi.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:text="@string/success_message" />
+            
+    </LinearLayout>
+    
+    <ImageButton
+        android:id="@+id/dismissButton"
+        android:layout_width="@dimen/min_touch_target_size"
+        android:layout_height="@dimen/min_touch_target_size"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        android:contentDescription="@string/content_desc_close_feedback"
+        android:padding="@dimen/spacing_small" />
+        
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background color -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/primary_green"
+                android:endColor="@color/primary_green_dark"
+                android:angle="45" />
+        </shape>
+    </item>
+    
+    <!-- Logo (centered) -->
+    <item android:gravity="center">
+        <bitmap android:src="@drawable/ic_launcher_foreground"
+            android:gravity="center" />
+    </item>
+</layer-list>

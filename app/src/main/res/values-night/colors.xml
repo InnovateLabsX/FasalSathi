@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Colors for FasalSaathi -->
+    
+    <!-- Dark Gradient Colors -->
+    <color name="modern_light_1">#2D5A3D</color>      <!-- Dark green -->
+    <color name="modern_light_2">#2A5F3A</color>      <!-- Darker green -->
+    <color name="modern_light_3">#275938</color>      <!-- Darker green -->
+    <color name="modern_medium_1">#245436</color>     <!-- Medium dark green -->
+    <color name="modern_medium_2">#1F4A30</color>     <!-- Medium dark green -->
+    <color name="modern_medium_3">#1A3F2A</color>     <!-- Medium dark green-blue -->
+    <color name="modern_medium_4">#153423</color>     <!-- Dark blue-green -->
+    <color name="modern_dark_1">#10291C</color>       <!-- Very dark -->
+    <color name="modern_dark_2">#0D1F16</color>       <!-- Very dark -->
+    <color name="modern_dark_3">#0A1511</color>       <!-- Darkest -->
+    <color name="modern_dark_4">#07100C</color>       <!-- Darkest -->
+    
+    <!-- Primary Colors (Dark Theme) -->
+    <color name="primary_green">#6BC78A</color>        <!-- Lighter primary for dark theme -->
+    <color name="primary_green_dark">#4AA568</color>   <!-- Primary dark variant -->
+    <color name="primary_green_light">#8DD3A7</color>  <!-- Primary light variant -->
+    <color name="primary_dark">#2D5A3D</color>         <!-- Primary dark -->
+    
+    <!-- Background Colors (Dark Theme) -->
+    <color name="background_light">#121212</color>     <!-- Dark background -->
+    <color name="background_white">#1E1E1E</color>     <!-- Dark surface -->
+    <color name="background_card">#2A2A2A</color>      <!-- Dark card -->
+    <color name="background_surface">#242424</color>   <!-- Dark surface -->
+    
+    <!-- Surface Colors (Dark Theme) -->
+    <color name="surface_light">#2A2A2A</color>        <!-- Dark surface -->
+    <color name="surface_medium">#333333</color>       <!-- Darker surface -->
+    <color name="surface_dark">#3D3D3D</color>         <!-- Darkest surface -->
+    
+    <!-- Text Colors (Dark Theme) -->
+    <color name="text_primary">#FFFFFF</color>         <!-- White text -->
+    <color name="text_secondary">#B3B3B3</color>       <!-- Light gray text -->
+    <color name="text_hint">#666666</color>            <!-- Darker hint text -->
+    <color name="text_on_primary">#000000</color>      <!-- Black text on primary -->
+    <color name="text_on_surface">#FFFFFF</color>      <!-- White text on surface -->
+    
+    <!-- Navigation Colors (Dark Theme) -->
+    <color name="nav_background">#1E1E1E</color>
+    <color name="nav_icon_active">#6BC78A</color>
+    <color name="nav_icon_inactive">#B3B3B3</color>
+    <color name="nav_text_active">#FFFFFF</color>
+    <color name="nav_text_inactive">#B3B3B3</color>
+    <color name="nav_indicator">#2A5F3A</color>
+    
+    <!-- Status Colors remain same for visibility -->
+    <color name="success_green">#6BC78A</color>
+    <color name="warning_orange">#FFB74D</color>
+    <color name="error_red">#FF6B6B</color>
+    <color name="info_blue">#64B5F6</color>
+    
+    <!-- Card Colors (Dark Theme) -->
+    <color name="card_default">#2A2A2A</color>         <!-- Dark card -->
+    <color name="card_weather">#2D3D4A</color>         <!-- Dark weather card -->
+    <color name="card_crop_recommendation">#2A3A2D</color> <!-- Dark crop card -->
+    <color name="card_disease_detection">#3A2D2A</color>   <!-- Dark disease card -->
+    <color name="card_ai_assistant">#2A2A3A</color>       <!-- Dark AI card -->
+</resources>

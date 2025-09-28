@@ -1,0 +1,137 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">फसलसाथी</string>
+    <string name="app_tagline">आपका स्मार्ट खेती साथी</string>
+    
+    <!-- Common -->
+    <string name="ok">ठीक है</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="save">सहेजें</string>
+    <string name="edit">संपादित करें</string>
+    <string name="delete">हटाएं</string>
+    <string name="share">साझा करें</string>
+    <string name="retry">पुनः प्रयास</string>
+    <string name="loading">लोड हो रहा है...</string>
+    <string name="error">त्रुटि</string>
+    <string name="success">सफलता</string>
+    
+    <!-- Authentication -->
+    <string name="login">लॉगिन</string>
+    <string name="register">पंजीकरण</string>
+    <string name="logout">लॉगआउट</string>
+    <string name="email">ईमेल</string>
+    <string name="password">पासवर्ड</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि करें</string>
+    <string name="phone_number">फ़ोन नंबर</string>
+    <string name="full_name">पूरा नाम</string>
+    <string name="forgot_password">पासवर्ड भूल गए?</string>
+    <string name="login_with_google">Google से लॉगिन करें</string>
+    <string name="login_with_phone">फ़ोन से लॉगिन करें</string>
+    <string name="create_account">खाता बनाएं</string>
+    <string name="already_have_account">क्या आपका खाता है? लॉगिन करें</string>
+    <string name="dont_have_account">खाता नहीं है? पंजीकरण करें</string>
+    
+    <!-- Dashboard -->
+    <string name="welcome_back">वापस स्वागत है</string>
+    <string name="dashboard">डैशबोर्ड</string>
+    <string name="crop_recommendation">फसल सुझाव</string>
+    <string name="disease_detection">रोग पहचान</string>
+    <string name="market_prices">बाजार दर</string>
+    <string name="weather">मौसम</string>
+    <string name="community">समुदाय</string>
+    <string name="profile">प्रोफाइल</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="support">सहायता</string>
+    <string name="todays_focus">आज का फोकस</string>
+    <string name="smart_actions">स्मार्ट एक्शन</string>
+    <string name="smart_insights">स्मार्ट जानकारी</string>
+    <string name="view_reports">रिपोर्ट देखें</string>
+    
+    <!-- Action Subtitles -->
+    <string name="action_profile_subtitle">अपना खाता प्रबंधित करें</string>
+    <string name="action_ai_assistant_subtitle">कृषि सलाह प्राप्त करें</string>
+    <string name="dashboard_insight_tagline">आपके खेत के लिए आज की स्मार्ट जानकारी</string>
+    <string name="dashboard_manage_button">प्रबंधित करें</string>
+    <string name="dashboard_soil_moisture_chip">मिट्टी की नमी 68%</string>
+    <string name="dashboard_irrigation_chip">2 घंटे में सिंचाई</string>
+    <string name="focus_soil_health">मिट्टी स्वास्थ्य</string>
+    <string name="focus_pest_watch">कीट निगरानी</string>
+    <string name="focus_market_rates">बाजार दरें</string>
+    <string name="focus_water_usage">पानी का उपयोग</string>
+    <string name="action_ai_suggestion_subtitle">AI सुझाव प्राप्त करें</string>
+    <string name="action_disease_scan_subtitle">पत्तियों की तुरंत जांच</string>
+    <string name="action_weather_subtitle">खेत का काम प्लान करें</string>
+    <string name="insight_soil_moisture">मिट्टी की नमी</string>
+    <string name="insight_soil_moisture_value">68% • उत्तम</string>
+    <string name="insight_market_price">बाजार मूल्य</string>
+    <string name="insight_market_price_delta">गेहूं ↑ 3.2%</string>
+    <string name="insight_market_price_value">₹ 2,150 / क्विंटल</string>
+    
+    <!-- Crop Recommendation -->
+    <string name="get_crop_recommendation">फसल सुझाव प्राप्त करें</string>
+    <string name="soil_type">मिट्टी का प्रकार</string>
+    <string name="nitrogen_level">नाइट्रोजन स्तर</string>
+    <string name="phosphorus_level">फास्फोरस स्तर</string>
+    <string name="potassium_level">पोटेशियम स्तर</string>
+    <string name="ph_level">pH स्तर</string>
+    <string name="rainfall">बारिश (मिमी)</string>
+    <string name="temperature">तापमान (°C)</string>
+    <string name="humidity">नमी (%)</string>
+    <string name="location">स्थान</string>
+    <string name="previous_crop">पिछली फसल</string>
+    <string name="farming_experience">खेती का अनुभव (वर्ष)</string>
+    <string name="farm_size">खेत का आकार (एकड़)</string>
+    <string name="recommend_crops">फसलों की सिफारिश करें</string>
+    
+    <!-- Disease Detection -->
+    <string name="detect_plant_disease">पौधे की बीमारी पहचानें</string>
+    <string name="upload_plant_image">पौधे की तस्वीर अपलोड करें</string>
+    <string name="take_photo">फोटो लें</string>
+    <string name="choose_from_gallery">गैलरी से चुनें</string>
+    <string name="analyzing_image">तस्वीर का विश्लेषण...</string>
+    <string name="disease_detected">रोग पाया गया</string>
+    <string name="no_disease_detected">कोई रोग नहीं मिला</string>
+    <string name="treatment_suggestions">उपचार सुझाव</string>
+    <string name="prevention_tips">बचाव के तरीके</string>
+    
+    <!-- Market Prices -->
+    <string name="todays_market_prices">आज की बाजार दरें</string>
+    <string name="select_crop">फसल चुनें</string>
+    <string name="select_market">बाजार चुनें</string>
+    <string name="price_per_quintal">प्रति क्विंटल दर (₹)</string>
+    <string name="market_trends">बाजार रुझान</string>
+    <string name="price_alerts">मूल्य अलर्ट</string>
+    
+    <!-- Weather -->
+    <string name="weather_forecast">मौसम पूर्वानुमान</string>
+    <string name="current_weather">वर्तमान मौसम</string>
+    <string name="temperature_range">तापमान सीमा</string>
+    <string name="rainfall_prediction">बारिश का पूर्वानुमान</string>
+    <string name="humidity_level">नमी का स्तर</string>
+    <string name="wind_speed">हवा की गति</string>
+    <string name="weather_alerts">मौसम अलर्ट</string>
+    
+    <!-- Profile -->
+    <string name="my_profile">मेरी प्रोफाइल</string>
+    <string name="personal_information">व्यक्तिगत जानकारी</string>
+    <string name="farm_details">खेत का विवरण</string>
+    <string name="language_preference">भाषा पसंद</string>
+    <string name="notification_settings">सूचना सेटिंग्स</string>
+    <string name="history">इतिहास</string>
+    <string name="recommendations_history">सुझाव इतिहास</string>
+    <string name="disease_detection_history">रोग पहचान इतिहास</string>
+    
+    <!-- Language -->
+    <string name="select_language">भाषा चुनें</string>
+    <string name="english">अंग्रेजी</string>
+    <string name="hindi">हिंदी</string>
+    <string name="hinglish">हिंग्लिश</string>
+    
+    <!-- Offline -->
+    <string name="offline_mode">ऑफलाइन मोड</string>
+    <string name="no_internet_connection">इंटरनेट कनेक्शन नहीं</string>
+    <string name="data_will_sync_when_online">ऑनलाइन होने पर डेटा सिंक होगा</string>
+    <string name="offline_data_available">ऑफलाइन डेटा उपलब्ध</string>
+</resources>
