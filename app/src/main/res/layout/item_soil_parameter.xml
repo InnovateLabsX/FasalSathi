@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Parameter Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvParameterName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nitrogen (N)"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvParameterUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mg/kg"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:background="@color/modern_light_2"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <!-- Range Display -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvMinValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/modern_medium_4" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="@color/modern_light_2"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:id="@+id/tvMaxValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="280"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/modern_medium_4" />
+
+    </LinearLayout>
+
+    <!-- Range Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low"
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressOptimalRange"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:indicatorColor="@color/modern_medium_3"
+            app:trackColor="@color/modern_light_2"
+            android:progress="75" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High"
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary" />
+
+    </LinearLayout>
+
+    <!-- Status Text -->
+    <TextView
+        android:id="@+id/tvParameterStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Optimal for strong vegetative growth"
+        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:textStyle="italic" />
+
+</LinearLayout>

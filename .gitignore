@@ -49,40 +49,6 @@ captures/
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
 
-# Large ML files and datasets - Added for ML integration
-Datasets/CyAUG-Dataset/
-Datasets/Orignal-Dataset/
-Datasets/Images/
-ml_pipeline/models/
-*.h5
-*.joblib
-*.pkl
-
-# ML Python cache and virtual environments
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-.venv/
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Large image files
-*.jpg
-*.jpeg
-*.png
-*.webp
-
-# Model checkpoints and logs
-checkpoint/
-logs/
-*.tmp
-*.temp
-
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.
 #*.jks

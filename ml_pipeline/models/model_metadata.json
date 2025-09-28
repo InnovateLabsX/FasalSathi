@@ -1,0 +1,12 @@
+{
+  "crop_recommendation": {
+    "model_path": "crop_recommendation_model.joblib",
+    "scaler_path": "crop_scaler.joblib",
+    "encoder_path": "crop_encoder.joblib"
+  },
+  "soil_type": {
+    "model_path": "soil_type_model.joblib",
+    "scaler_path": "soil_scaler.joblib",
+    "encoder_path": "soil_encoder.joblib"
+  }
+}
