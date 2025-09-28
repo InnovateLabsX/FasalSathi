@@ -210,6 +210,7 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chipSoilHealth"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -220,6 +221,7 @@
                             app:chipIconTint="@color/modern_medium_4" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chipPestWatch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -230,6 +232,7 @@
                             app:chipIconTint="@color/warning_orange" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chipMarketRates"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -240,6 +243,7 @@
                             app:chipIconTint="@color/info_blue" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chipWaterUsage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"

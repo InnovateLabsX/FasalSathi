@@ -23,6 +23,7 @@ import com.fasalsaathi.app.utils.LanguageManager
 import com.fasalsaathi.app.FasalSaathiApplication
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.chip.Chip
 import com.fasalsaathi.app.ui.crops.CropRecommendationActivity
 import com.fasalsaathi.app.ui.community.CommunityActivity
 
@@ -107,6 +108,23 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         findViewById<CardView>(R.id.cardWeather).setOnClickListener {
             showDetailedWeather()
+        }
+        
+        // Today's Focus chips
+        findViewById<Chip>(R.id.chipSoilHealth).setOnClickListener {
+            showSoilHealthInfo()
+        }
+        
+        findViewById<Chip>(R.id.chipPestWatch).setOnClickListener {
+            showPestWatchInfo()
+        }
+        
+        findViewById<Chip>(R.id.chipMarketRates).setOnClickListener {
+            showMarketRatesInfo()
+        }
+        
+        findViewById<Chip>(R.id.chipWaterUsage).setOnClickListener {
+            showWaterUsageInfo()
         }
     }
     
@@ -454,6 +472,81 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 else -> false
             }
         }
+    }
+    
+    // Today's Focus chip handlers
+    private fun showSoilHealthInfo() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Soil Health Focus")
+            .setMessage("🌱 Today's soil health tips:\n\n" +
+                "• Check soil moisture levels\n" +
+                "• Test pH levels (ideal: 6.0-7.0)\n" +
+                "• Look for signs of nutrient deficiency\n" +
+                "• Consider organic composting\n" +
+                "• Monitor soil temperature\n\n" +
+                "💡 Healthy soil leads to better crop yields!")
+            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
+            .setNeutralButton("Learn More") { _, _ -> 
+                // Could open a detailed soil health activity
+                Toast.makeText(this, "Opening soil health guide...", Toast.LENGTH_SHORT).show()
+            }
+            .create()
+        dialog.show()
+    }
+    
+    private fun showPestWatchInfo() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Pest Watch Focus")
+            .setMessage("🛡️ Today's pest monitoring:\n\n" +
+                "• Inspect leaves for unusual spots\n" +
+                "• Check for insect damage\n" +
+                "• Look for pest eggs on plant stems\n" +
+                "• Monitor crop growth patterns\n" +
+                "• Consider natural pest control\n\n" +
+                "⚠️ Early detection prevents major crop loss!")
+            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
+            .setNeutralButton("Report Pest") { _, _ -> 
+                Toast.makeText(this, "Opening pest reporting...", Toast.LENGTH_SHORT).show()
+            }
+            .create()
+        dialog.show()
+    }
+    
+    private fun showMarketRatesInfo() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Market Rates Focus")
+            .setMessage("📈 Today's market insights:\n\n" +
+                "• Rice: ₹2,800/quintal (+2.5%)\n" +
+                "• Wheat: ₹2,200/quintal (-1.2%)\n" +
+                "• Cotton: ₹6,500/quintal (+3.8%)\n" +
+                "• Sugarcane: ₹350/quintal (stable)\n" +
+                "• Tomato: ₹35/kg (+15.2%)\n\n" +
+                "💰 Plan your harvest timing wisely!")
+            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
+            .setNeutralButton("View Markets") { _, _ -> 
+                // Could open market activity
+                Toast.makeText(this, "Opening market rates...", Toast.LENGTH_SHORT).show()
+            }
+            .create()
+        dialog.show()
+    }
+    
+    private fun showWaterUsageInfo() {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Water Usage Focus")
+            .setMessage("💧 Today's water management:\n\n" +
+                "• Optimal irrigation: Early morning\n" +
+                "• Check drip irrigation systems\n" +
+                "• Monitor soil moisture depth\n" +
+                "• Consider rainwater harvesting\n" +
+                "• Adjust based on weather forecast\n\n" +
+                "🌊 Efficient water use saves costs and helps crops!")
+            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
+            .setNeutralButton("Water Calculator") { _, _ -> 
+                Toast.makeText(this, "Opening water usage calculator...", Toast.LENGTH_SHORT).show()
+            }
+            .create()
+        dialog.show()
     }
     
     override fun onBackPressed() {
