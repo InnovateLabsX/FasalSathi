@@ -10,33 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="16dp">
 
         <!-- Logo and App Name -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:src="@drawable/ic_launcher_foreground"
                 android:background="@android:color/white"
-                android:padding="12dp"
-                android:elevation="6dp"
+                android:padding="8dp"
+                android:elevation="4dp"
                 android:contentDescription="@string/cd_app_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/app_name"
                 android:textColor="@color/text_on_primary"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium" />
                 
@@ -44,10 +44,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/signup_welcome_message"
                 android:textColor="@color/text_hint"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textAlignment="center"
                 android:lineSpacingMultiplier="1.2"
                 android:fontFamily="sans-serif" />
@@ -56,10 +56,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/signup_benefits_text"
                 android:textColor="@color/primary_green"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 android:fontFamily="sans-serif" />
@@ -70,25 +70,25 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
             app:cardBackgroundColor="@color/background_white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="28dp">
+                android:padding="20dp">
 
                 <!-- Sign Up Title -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/create_farmer_account"
                     android:textColor="@color/text_primary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-medium" />
 
@@ -96,15 +96,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:cardCornerRadius="50dp"
-                        app:cardElevation="4dp">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:cardCornerRadius="40dp"
+                        app:cardElevation="3dp">
 
                         <ImageView
                             android:id="@+id/ivProfilePhoto"
@@ -119,20 +119,20 @@
                     <Button
                         android:id="@+id/btnSelectPhoto"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/select_photo"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         style="@style/FasalSaathi.Button.Secondary" />
                         
                     <!-- Profile Photo Help -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/profile_photo_help"
                         android:textColor="@color/text_hint"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textAlignment="center"
                         android:fontFamily="sans-serif" />
 
@@ -142,7 +142,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="10dp"
                     style="@style/FasalSaathi.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -464,8 +464,8 @@
                 <Button
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:text="@string/create_account"
                     android:textColor="@color/text_on_primary"
                     android:textSize="16sp"
@@ -482,28 +482,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="12dp"
                     android:visibility="gone" />
 
                 <!-- Divider -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
+                    android:layout_marginVertical="12dp"
                     android:background="@color/divider_color" />
 
                 <!-- Google Sign Up Button -->
                 <com.google.android.gms.common.SignInButton
                     android:id="@+id/btnGoogleSignUp"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp" />
 
                 <!-- OR Divider -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
+                    android:layout_marginVertical="12dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -533,7 +533,7 @@
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="48dp"
                     android:text="@string/already_have_account"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
@@ -552,10 +552,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/signup_footer"
             android:textColor="@color/text_hint"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
 
     </LinearLayout>
 

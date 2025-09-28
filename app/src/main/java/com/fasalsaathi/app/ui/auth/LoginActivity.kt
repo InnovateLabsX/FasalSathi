@@ -108,19 +108,34 @@ class LoginActivity : AppCompatActivity() {
     }
     
     private fun generateNewCaptcha() {
-        val num1 = Random.nextInt(1, 10)
-        val num2 = Random.nextInt(1, 10)
-        val operators = listOf("+", "-", "*")
-        val operator = operators.random()
+        // Generate numbers to ensure positive answer
+        // For subtraction: num1 is always larger than num2
+        // For addition/multiplication: always positive
+        val operations = listOf("addition", "subtraction", "multiplication")
+        val operation = operations.random()
         
-        captchaAnswer = when (operator) {
-            "+" -> (num1 + num2).toString()
-            "-" -> (num1 - num2).toString()
-            "*" -> (num1 * num2).toString()
-            else -> "0"
+        when (operation) {
+            "addition" -> {
+                val num1 = Random.nextInt(1, 10)
+                val num2 = Random.nextInt(1, 10)
+                captchaAnswer = (num1 + num2).toString()
+                tvCaptcha.text = "$num1 + $num2 = ?"
+            }
+            "subtraction" -> {
+                // Ensure num1 > num2 for positive result
+                val num2 = Random.nextInt(1, 8)
+                val num1 = Random.nextInt(num2 + 1, num2 + 10)
+                captchaAnswer = (num1 - num2).toString()
+                tvCaptcha.text = "$num1 - $num2 = ?"
+            }
+            "multiplication" -> {
+                val num1 = Random.nextInt(1, 6)
+                val num2 = Random.nextInt(1, 6)
+                captchaAnswer = (num1 * num2).toString()
+                tvCaptcha.text = "$num1 × $num2 = ?"
+            }
         }
         
-        tvCaptcha.text = "$num1 $operator $num2 = ?"
         etCaptcha.text.clear()
         validateForm()
     }
