@@ -64,6 +64,7 @@
     <color name="success_green">#52B69A</color>
     <color name="warning_orange">#F4A261</color>
     <color name="error_red">#E76F51</color>
+    <color name="error_color">#E76F51</color>
     <color name="info_blue">#168AAD</color>
     
     <!-- Agricultural Specific Colors (Updated) -->

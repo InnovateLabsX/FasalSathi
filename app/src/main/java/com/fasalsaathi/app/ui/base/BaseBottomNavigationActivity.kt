@@ -64,7 +64,7 @@ abstract class BaseBottomNavigationActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
         overridePendingTransition(R.anim.fade_in_scale, R.anim.fade_out_scale)
-        if (this !is DashboardActivity) {
+        if (this.javaClass.simpleName != "DashboardActivity") {
             finish()
         }
     }

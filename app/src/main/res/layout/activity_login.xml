@@ -16,8 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -30,19 +30,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/app_name"
                 android:textColor="@color/primary_green"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/app_tagline"
                 android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -58,17 +58,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="16dp">
 
                 <!-- Login Title -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/login_title"
                     android:textColor="@color/text_primary"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <!-- Email Input -->
@@ -208,7 +208,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="12dp"
+                    android:layout_marginVertical="8dp"
                     android:background="@color/divider_color" />
 
                 <!-- Google Sign In Button -->
@@ -222,7 +222,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="12dp"
+                    android:layout_marginVertical="8dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 

@@ -90,12 +90,12 @@ object AccessibilityUtils {
                 R.id.chipSoilHealth -> {
                     setupAccessibility(child, "Soil Health information. Double tap to learn about maintaining healthy soil.", "Button")
                 }
-                R.id.chipPestWatch -> {
-                    setupAccessibility(child, "Pest Watch information. Double tap to learn about pest control strategies.", "Button")
-                }
-                R.id.chipWaterUsage -> {
-                    setupAccessibility(child, "Water Usage information. Double tap to learn about efficient irrigation.", "Button")
-                }
+                // R.id.chipPestWatch -> {
+                //     setupAccessibility(child, "Pest Watch information. Double tap to learn about pest control strategies.", "Button")
+                // }
+                // R.id.chipWaterUsage -> {
+                //     setupAccessibility(child, "Water Usage information. Double tap to learn about efficient irrigation.", "Button")
+                // }
             }
             
             if (child is ViewGroup) {
