@@ -128,6 +128,11 @@
     <color name="elevation_2">#F5FDFC</color>                  <!-- 2dp elevation -->
     <color name="elevation_3">#F2FBFA</color>                  <!-- 3dp elevation -->
     
+    <!-- Status Colors -->
+    <color name="error_color">#E76F51</color>          <!-- Error/danger color -->
+    <color name="success_color">#52B69A</color>        <!-- Success color -->
+    <color name="warning_color">#F4A261</color>        <!-- Warning color -->
+    
     <!-- Feature Specific Colors -->
     <color name="weather_sunny">#F4A261</color>
     <color name="weather_cloudy">#8FA6A8</color>

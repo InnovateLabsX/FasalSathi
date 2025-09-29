@@ -25,8 +25,11 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.fasalsaathi.app.ui.crops.CropRecommendationActivity
 import com.fasalsaathi.app.ui.community.CommunityActivity
+import com.fasalsaathi.app.ui.base.BaseBottomNavigationActivity
 
-class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavigationItemSelectedListener {
+    
+    override fun getCurrentNavItemId(): Int = R.id.nav_home
     
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -425,35 +428,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         finish()
         
         Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-    }
-    
-    private fun setupBottomNavigation() {
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        
-        // Set the home tab as selected by default
-        bottomNavigation.selectedItemId = R.id.nav_home
-        
-        bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    // Already on dashboard/home
-                    true
-                }
-                R.id.nav_crops -> {
-                    startActivity(Intent(this, CropRecommendationActivity::class.java))
-                    true
-                }
-                R.id.nav_community -> {
-                    startActivity(Intent(this, com.fasalsaathi.app.ui.community.CommunityActivity::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, com.fasalsaathi.app.ui.profile.ProfileActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
     }
     
     override fun onBackPressed() {

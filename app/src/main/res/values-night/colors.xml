@@ -48,6 +48,9 @@
     <color name="nav_indicator">#2A5F3A</color>
     
     <!-- Status Colors remain same for visibility -->
+    <color name="error_color">#FF6B6B</color>         <!-- Error color for dark theme -->
+    <color name="success_color">#6BC78A</color>       <!-- Success color -->
+    <color name="warning_color">#FFB74D</color>       <!-- Warning color -->
     <color name="success_green">#6BC78A</color>
     <color name="warning_orange">#FFB74D</color>
     <color name="error_red">#FF6B6B</color>
