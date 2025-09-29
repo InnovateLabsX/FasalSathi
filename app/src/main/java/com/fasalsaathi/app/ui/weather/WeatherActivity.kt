@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import com.fasalsaathi.app.R
@@ -15,20 +16,32 @@ import java.util.*
 
 class WeatherActivity : AppCompatActivity() {
     
+    private lateinit var toolbar: Toolbar
     private lateinit var weatherService: WeatherService
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
         
+        setupToolbar()
         weatherService = WeatherService()
-        
-        // Set up toolbar
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Weather Details"
         
         // Load weather data
         loadWeatherData()
+    }
+    
+    private fun setupToolbar() {
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            title = "Weather Details"
+        }
+        
+        toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
     
     override fun onSupportNavigateUp(): Boolean {

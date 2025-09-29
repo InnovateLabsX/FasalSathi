@@ -36,11 +36,13 @@ import com.google.android.material.textfield.TextInputLayout
 import java.util.Locale
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.Job
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -55,6 +57,7 @@ class CropRecommendationActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var btnAutoLocation: MaterialButton
     private lateinit var btnGetRecommendation: MaterialButton
+    private lateinit var btnOpenMapPicker: MaterialButton
     private lateinit var etLatitude: TextInputEditText
     private lateinit var etLongitude: TextInputEditText
     private lateinit var etFarmSize: TextInputEditText
@@ -115,6 +118,10 @@ class CropRecommendationActivity : AppCompatActivity() {
     private lateinit var confidenceResult: TextView
     private lateinit var soilAnalysisProgress: CircularProgressIndicator
     private var currentPhotoPath: String = ""
+    private var manualCitySearchJob: Job? = null
+    private var suppressCityTextWatcher = false
+    private var weatherUpdateJob: Job? = null
+    private var lastResolvedCityQuery: String? = null
     
     // Soil types for dropdown
     private val soilTypes = arrayOf(
@@ -232,6 +239,7 @@ class CropRecommendationActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         btnAutoLocation = findViewById(R.id.btnAutoLocation)
         btnGetRecommendation = findViewById(R.id.btnGetRecommendation)
+    btnOpenMapPicker = findViewById(R.id.btnOpenMapPicker)
         etLatitude = findViewById(R.id.etLatitude)
         etLongitude = findViewById(R.id.etLongitude)
         etFarmSize = findViewById(R.id.etFarmSize)
@@ -288,6 +296,8 @@ class CropRecommendationActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
+            setDisplayUseLogoEnabled(true)
+            setLogo(R.drawable.ic_launcher_legacy)
             title = "Crop Recommendation"
         }
         
@@ -318,26 +328,147 @@ class CropRecommendationActivity : AppCompatActivity() {
             updateIrrigationInfo(selectedMethod)
         }
     }
+
+    private fun updateCityField(cityName: String) {
+        suppressCityTextWatcher = true
+        acCity.setText(cityName, false)
+        acCity.setSelection(cityName.length)
+        acCity.dismissDropDown()
+        suppressCityTextWatcher = false
+    }
     
     /**
      * Setup enhanced location picker with unlimited city selection
      */
     private fun setupLocationPicker() {
-        // Make city field clickable to open location picker
-        acCity.isFocusable = false
-        acCity.isClickable = true
-        
-        acCity.setOnClickListener {
-            openLocationPicker()
+        val cityNames = indianCities.keys.sorted()
+        val cityAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cityNames)
+        acCity.threshold = 1
+        acCity.setAdapter(cityAdapter)
+        acCity.isFocusable = true
+        acCity.isFocusableInTouchMode = true
+
+        acCity.setOnItemClickListener { parent, _, position, _ ->
+            val selectedCity = parent.getItemAtPosition(position) as? String ?: return@setOnItemClickListener
+            manualCitySearchJob?.cancel()
+            val cityData = indianCities[selectedCity]
+            updateCityField(selectedCity)
+            acCity.clearFocus()
+            if (cityData != null) {
+                updateLocationAndWeather(cityData.latitude, cityData.longitude, selectedCity, selectedCity)
+            } else {
+                manualCitySearchJob = lifecycleScope.launch {
+                    resolveManualCityInput(selectedCity)
+                }
+            }
         }
-        
-        // Location picker is integrated through the city field click
+
+        acCity.doAfterTextChanged { editable ->
+            if (suppressCityTextWatcher) {
+                return@doAfterTextChanged
+            }
+            val input = editable?.toString()?.trim().orEmpty()
+            manualCitySearchJob?.cancel()
+            if (input.length < 3) {
+                return@doAfterTextChanged
+            }
+            manualCitySearchJob = lifecycleScope.launch {
+                delay(500)
+                resolveManualCityInput(input)
+            }
+        }
+    }
+
+    private suspend fun resolveManualCityInput(rawInput: String) {
+        val normalizedInput = rawInput.trim()
+        if (normalizedInput.isEmpty()) {
+            manualCitySearchJob = null
+            return
+        }
+
+        if (lastResolvedCityQuery?.equals(normalizedInput, ignoreCase = true) == true) {
+            manualCitySearchJob = null
+            return
+        }
+
+        val exactMatch = indianCities.entries.firstOrNull { it.key.equals(normalizedInput, ignoreCase = true) }
+        if (exactMatch != null) {
+            lastResolvedCityQuery = exactMatch.key
+            acCity.error = null
+            updateCityField(exactMatch.key)
+            acCity.clearFocus()
+            updateLocationAndWeather(exactMatch.value.latitude, exactMatch.value.longitude, exactMatch.key, exactMatch.key)
+            manualCitySearchJob = null
+            return
+        }
+
+        val partialMatch = indianCities.entries.firstOrNull { it.key.contains(normalizedInput, ignoreCase = true) }
+        if (partialMatch != null) {
+            lastResolvedCityQuery = partialMatch.key
+            acCity.error = null
+            updateCityField(partialMatch.key)
+            acCity.clearFocus()
+            updateLocationAndWeather(partialMatch.value.latitude, partialMatch.value.longitude, partialMatch.key, partialMatch.key)
+            manualCitySearchJob = null
+            return
+        }
+
+        showLoading(true)
+        try {
+            val geocodedAddress = withContext(Dispatchers.IO) {
+                try {
+                    val geocoder = Geocoder(this@CropRecommendationActivity, Locale.getDefault())
+                    geocoder.getFromLocationName(normalizedInput, 1)?.firstOrNull()
+                } catch (io: IOException) {
+                    null
+                }
+            }
+
+            if (geocodedAddress != null) {
+                val displayName = geocodedAddress.locality
+                    ?: geocodedAddress.subAdminArea
+                    ?: geocodedAddress.adminArea
+                    ?: normalizedInput
+
+                lastResolvedCityQuery = displayName
+                acCity.error = null
+                updateCityField(displayName)
+                acCity.clearFocus()
+                updateLocationAndWeather(
+                    geocodedAddress.latitude,
+                    geocodedAddress.longitude,
+                    displayName,
+                    geocodedAddress.getAddressLine(0) ?: displayName
+                )
+            } else {
+                lastResolvedCityQuery = null
+                acCity.error = "City not found"
+                showLoading(false)
+                Toast.makeText(
+                    this,
+                    "Couldn't find \"$normalizedInput\". Try a nearby town or city.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        } catch (e: Exception) {
+            lastResolvedCityQuery = null
+            acCity.error = "Location lookup failed"
+            showLoading(false)
+            Toast.makeText(
+                this,
+                "Error finding location: ${e.localizedMessage ?: "Unknown error"}",
+                Toast.LENGTH_LONG
+            ).show()
+        } finally {
+            manualCitySearchJob = null
+        }
     }
     
     /**
      * Open the enhanced location picker activity
      */
     private fun openLocationPicker() {
+        manualCitySearchJob?.cancel()
         val intent = Intent(this, LocationPickerActivity::class.java)
         locationPickerLauncher.launch(intent)
     }
@@ -356,7 +487,10 @@ class CropRecommendationActivity : AppCompatActivity() {
                 val address = data.getStringExtra(LocationPickerActivity.EXTRA_ADDRESS) ?: "Unknown Location"
                 
                 // Update UI with selected location
-                acCity.setText(cityName)
+                acCity.error = null
+                lastResolvedCityQuery = cityName
+                updateCityField(cityName)
+                acCity.clearFocus()
                 
                 // Fetch weather data for the selected location
                 updateLocationAndWeather(latitude, longitude, cityName, address)
@@ -367,6 +501,11 @@ class CropRecommendationActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         btnAutoLocation.setOnClickListener {
             checkLocationPermissionAndGetLocation()
+        }
+
+        btnOpenMapPicker.setOnClickListener {
+            manualCitySearchJob?.cancel()
+            openLocationPicker()
         }
         
         btnGetRecommendation.setOnClickListener {
@@ -453,18 +592,19 @@ class CropRecommendationActivity : AppCompatActivity() {
      * Enhanced location update with real-time weather data
      */
     private fun updateLocationAndWeather(latitude: Double, longitude: Double, cityName: String, address: String) {
-        lifecycleScope.launch {
+        weatherUpdateJob?.cancel()
+        weatherUpdateJob = lifecycleScope.launch {
             try {
                 showLoading(true)
-                
+
                 // Update coordinates
                 etLatitude.setText(String.format("%.4f", latitude))
                 etLongitude.setText(String.format("%.4f", longitude))
-                
+
                 // Update location display
                 layoutLocationDisplay.visibility = View.VISIBLE
                 tvCurrentLocation.text = "$cityName (${String.format("%.4f", latitude)}, ${String.format("%.4f", longitude)})"
-                
+
                 // Get real-time weather data
                 try {
                     val weatherData = weatherApiService.getWeatherData(latitude, longitude)
@@ -480,17 +620,17 @@ class CropRecommendationActivity : AppCompatActivity() {
                     // Fallback to regional averages if weather service fails
                     useRegionalWeatherDefaults(latitude, longitude)
                 }
-                
+
                 // Use regional rainfall estimate
                 val regionalRainfall = getRegionalRainfall(latitude, longitude)
                 etRainfall.setText(String.format("%.0f", regionalRainfall))
-                
+
                 Toast.makeText(
                     this@CropRecommendationActivity,
                     "Location data updated for $cityName",
                     Toast.LENGTH_SHORT
                 ).show()
-                
+
             } catch (e: Exception) {
                 // Fallback for any errors
                 useRegionalWeatherDefaults(latitude, longitude)
@@ -855,6 +995,12 @@ class CropRecommendationActivity : AppCompatActivity() {
         }
         
         return Triple(temperature, humidity, rainfall)
+    }
+
+    override fun onDestroy() {
+        manualCitySearchJob?.cancel()
+        weatherUpdateJob?.cancel()
+        super.onDestroy()
     }
     
     private fun displayMLRecommendationResults(

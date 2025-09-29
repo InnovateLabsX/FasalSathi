@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="?attr/colorSurface">
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true">
+    
+    <!-- AppBarLayout for proper system insets handling -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true">
+        
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Select Location"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            app:layout_scrollFlags="scroll|enterAlways" />
+            
+    </com.google.android.material.appbar.AppBarLayout>
+    
+    <!-- Main Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
     
     <!-- Search Section -->
     <com.google.android.material.card.MaterialCardView
@@ -25,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search for a city or location"
-                app:startIconDrawable="@drawable/ic_search_24"
+                app:startIconDrawable="@android:drawable/ic_menu_search"
                 app:endIconMode="clear_text"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 
@@ -112,4 +141,6 @@
         
     </FrameLayout>
     
-</LinearLayout>
+    </LinearLayout>
+    
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

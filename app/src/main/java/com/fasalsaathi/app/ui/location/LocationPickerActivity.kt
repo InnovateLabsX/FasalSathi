@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,7 @@ class LocationPickerActivity : AppCompatActivity() {
         const val REQUEST_CODE_LOCATION_PICKER = 1001
     }
     
+    private lateinit var toolbar: Toolbar
     private lateinit var searchEditText: EditText
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -43,6 +45,7 @@ class LocationPickerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location_picker)
         
         initViews()
+        setupToolbar()
         setupLocationService()
         setupRecyclerView()
         setupSearch()
@@ -50,16 +53,24 @@ class LocationPickerActivity : AppCompatActivity() {
     }
     
     private fun initViews() {
+        toolbar = findViewById(R.id.toolbar)
         searchEditText = findViewById(R.id.etLocationSearch)
         recyclerView = findViewById(R.id.rvLocationResults)
         progressBar = findViewById(R.id.pbLoading)
         noResultsText = findViewById(R.id.tvNoResults)
         currentLocationButton = findViewById(R.id.btnCurrentLocation)
-        
-        // Setup toolbar
+    }
+    
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
             title = "Select Location"
+        }
+        
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
     }
     
