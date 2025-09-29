@@ -10,17 +10,17 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.fasalsaathi.app.FasalSaathiApplication
 import com.fasalsaathi.app.R
 import com.fasalsaathi.app.ui.auth.LoginActivity
-import com.fasalsaathi.app.ui.base.BaseBottomNavigationActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ProfileActivity : BaseBottomNavigationActivity() {
+class ProfileActivity : AppCompatActivity() {
     
     private lateinit var toolbar: Toolbar
     private lateinit var ivProfilePicture: CircleImageView
@@ -45,17 +45,12 @@ class ProfileActivity : BaseBottomNavigationActivity() {
         private const val REQUEST_GALLERY = 101
     }
     
-    override fun getCurrentNavItemId(): Int {
-        return R.id.nav_profile
-    }
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         
         initializeViews()
         setupToolbar()
-        setupBottomNavigation()
         loadUserProfile()
         setupClickListeners()
     }

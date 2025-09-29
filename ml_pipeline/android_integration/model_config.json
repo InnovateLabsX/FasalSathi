@@ -1,0 +1,61 @@
+{
+  "models": {
+    "crop_recommendation": {
+      "input_features": [
+        "n",
+        "p",
+        "k",
+        "ph",
+        "temperature",
+        "humidity",
+        "rainfall"
+      ],
+      "optional_features": [
+        "ec",
+        "oc",
+        "s",
+        "zn",
+        "fe",
+        "cu",
+        "mn",
+        "b"
+      ],
+      "model_type": "ensemble"
+    },
+    "soil_type": {
+      "input_features": [
+        "n",
+        "p",
+        "k",
+        "ph",
+        "temperature",
+        "humidity",
+        "rainfall"
+      ],
+      "optional_features": [
+        "ec",
+        "oc",
+        "s",
+        "zn",
+        "fe",
+        "cu",
+        "mn",
+        "b"
+      ],
+      "model_type": "random_forest"
+    },
+    "soil_image": {
+      "input_type": "image",
+      "image_size": [
+        224,
+        224
+      ],
+      "model_type": "cnn"
+    }
+  },
+  "deployment": {
+    "method": "python_service",
+    "port": 5000,
+    "endpoint": "/predict"
+  }
+}

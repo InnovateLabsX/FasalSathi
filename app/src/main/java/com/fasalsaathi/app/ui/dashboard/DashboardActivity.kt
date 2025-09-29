@@ -23,28 +23,16 @@ import com.fasalsaathi.app.utils.LanguageManager
 import com.fasalsaathi.app.FasalSaathiApplication
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.chip.Chip
 import com.fasalsaathi.app.ui.crops.CropRecommendationActivity
-import com.fasalsaathi.app.ui.base.BaseBottomNavigationActivity
-import com.fasalsaathi.app.utils.UXUtils
-import com.fasalsaathi.app.utils.AccessibilityUtils
+import com.fasalsaathi.app.ui.community.CommunityActivity
 
-class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavigationItemSelectedListener {
+class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var weatherService: WeatherService
-    private var currentWeatherData: WeatherService.WeatherData? = null
-    
-    companion object {
-        const val WEATHER_DATA_KEY = "cached_weather_data"
-        const val WEATHER_TIMESTAMP_KEY = "weather_timestamp"
-        const val WEATHER_CACHE_DURATION = 30 * 60 * 1000L // 30 minutes in milliseconds
-    }
-    
-    override fun getCurrentNavItemId(): Int = R.id.nav_home
     
     override fun attachBaseContext(newBase: Context?) {
         if (newBase != null) {
@@ -74,9 +62,6 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
         setupBottomNavigation()
         loadUserData()
         loadWeatherData()
-        
-        // Setup accessibility for better user experience
-        AccessibilityUtils.setupViewGroupAccessibility(findViewById(R.id.drawerLayout), this)
     }
     
     private fun setupToolbar() {
@@ -107,42 +92,21 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
     }
     
     private fun setupClickListeners() {
-        // Quick action cards with improved UX
-        UXUtils.setUpInteractiveView(findViewById(R.id.cardCropRecommendation)) {
-            UXUtils.showInfoMessage(this, "Opening Crop Recommendations...")
+        // Quick action cards
+        findViewById<CardView>(R.id.cardCropRecommendation).setOnClickListener {
             startActivity(Intent(this, CropRecommendationActivity::class.java))
         }
         
-        UXUtils.setUpInteractiveView(findViewById(R.id.cardDiseaseDetection)) {
-            UXUtils.showInfoMessage(this, "Opening Disease Detection...")
+        findViewById<CardView>(R.id.cardDiseaseDetection).setOnClickListener {
             startActivity(Intent(this, com.fasalsaathi.app.ui.disease.DiseaseDetectionActivity::class.java))
         }
         
-        UXUtils.setUpInteractiveView(findViewById(R.id.cardAIAssistant)) {
-            UXUtils.showInfoMessage(this, "Connecting to AI Assistant...")
+        findViewById<CardView>(R.id.cardAIAssistant).setOnClickListener {
             startActivity(Intent(this, com.fasalsaathi.app.ui.ai.AIAssistantActivity::class.java))
         }
         
-        UXUtils.setUpInteractiveView(findViewById(R.id.cardWeather)) {
-            UXUtils.showInfoMessage(this, "Loading detailed weather...")
+        findViewById<CardView>(R.id.cardWeather).setOnClickListener {
             showDetailedWeather()
-        }
-        
-        // Today's Focus chips with enhanced feedback
-        UXUtils.setUpInteractiveView(findViewById(R.id.chipSoilHealth)) {
-            showSoilHealthInfo()
-        }
-        
-        UXUtils.setUpInteractiveView(findViewById(R.id.chipPestWatch)) {
-            showPestWatchInfo()
-        }
-        
-        findViewById<Chip>(R.id.chipMarketRates).setOnClickListener {
-            showMarketRatesInfo()
-        }
-        
-        findViewById<Chip>(R.id.chipWaterUsage).setOnClickListener {
-            showWaterUsageInfo()
         }
     }
     
@@ -163,9 +127,9 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
     }
     
     private fun loadWeatherData() {
-        // Show loading state with better UX
-        findViewById<TextView>(R.id.tvTemperature).text = "..."
-        findViewById<TextView>(R.id.tvWeatherDesc).text = "🔄 Loading weather..."
+        // Show loading state
+        findViewById<TextView>(R.id.tvTemperature).text = "Loading..."
+        findViewById<TextView>(R.id.tvWeatherDesc).text = "Fetching weather..."
         
         // Get user's location from preferences
         val app = application as com.fasalsaathi.app.FasalSaathiApplication
@@ -184,12 +148,6 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
                 val weatherData = weatherService.getCurrentWeatherForUser(app.sharedPreferences)
                 
                 if (weatherData != null) {
-                    // Cache the weather data and timestamp
-                    currentWeatherData = weatherData
-                    app.sharedPreferences.edit()
-                        .putLong(WEATHER_TIMESTAMP_KEY, System.currentTimeMillis())
-                        .apply()
-                    
                     // Update UI with weather data - show city name instead of district
                     findViewById<TextView>(R.id.tvTemperature).text = "${weatherData.temperature.toInt()}${weatherData.temperatureUnit}"
                     findViewById<TextView>(R.id.tvWeatherDesc).text = "${weatherData.icon} ${weatherData.condition}"
@@ -198,23 +156,18 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
                     updateWeatherCard(weatherData)
                     
                     println("Weather loaded successfully for ${weatherData.location}")
-                    UXUtils.showSuccessMessage(this@DashboardActivity, "Weather updated successfully")
                 } else {
                     println("Weather data returned null, using fallback")
-                    // Create consistent fallback weather data
-                    currentWeatherData = createFallbackWeatherData()
+                    // Fallback weather data
                     findViewById<TextView>(R.id.tvTemperature).text = "28°C"
                     findViewById<TextView>(R.id.tvWeatherDesc).text = "🌤️ Partly Cloudy"
-                    UXUtils.showWarningMessage(this@DashboardActivity, "Using offline weather data")
                 }
             } catch (e: Exception) {
                 println("Weather loading error: ${e.message}")
                 e.printStackTrace()
-                // Handle error - create consistent fallback data
-                currentWeatherData = createFallbackWeatherData()
+                // Handle error - show default weather
                 findViewById<TextView>(R.id.tvTemperature).text = "28°C"
                 findViewById<TextView>(R.id.tvWeatherDesc).text = "🌤️ Weather Unavailable"
-                UXUtils.showErrorMessage(this@DashboardActivity, "Failed to load weather data")
             }
         }
     }
@@ -325,34 +278,8 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
     }
 
     private fun showDetailedWeather() {
-        // Navigate to the comprehensive weather activity with cached data
-        val intent = Intent(this, com.fasalsaathi.app.ui.weather.WeatherActivity::class.java)
-        
-        // Pass current weather data if available and recent
-        currentWeatherData?.let { weatherData ->
-            val app = application as com.fasalsaathi.app.FasalSaathiApplication
-            val lastUpdate = app.sharedPreferences.getLong(WEATHER_TIMESTAMP_KEY, 0L)
-            val currentTime = System.currentTimeMillis()
-            
-            // Only pass data if it's less than 30 minutes old
-            if (currentTime - lastUpdate < WEATHER_CACHE_DURATION) {
-                intent.putExtra("temperature", weatherData.temperature)
-                intent.putExtra("temperatureUnit", weatherData.temperatureUnit)
-                intent.putExtra("condition", weatherData.condition)
-                intent.putExtra("icon", weatherData.icon)
-                intent.putExtra("location", weatherData.location)
-                intent.putExtra("humidity", weatherData.humidity)
-                intent.putExtra("windSpeed", weatherData.windSpeed)
-                intent.putExtra("windDirection", weatherData.windDirection)
-                intent.putExtra("pressure", weatherData.pressure)
-                intent.putExtra("feelsLike", weatherData.feelsLike)
-                intent.putExtra("uvIndex", weatherData.uvIndex)
-                intent.putExtra("visibility", weatherData.visibility)
-                intent.putExtra("hasValidData", true)
-            }
-        }
-        
-        startActivity(intent)
+        // Navigate to the comprehensive weather activity
+        startActivity(Intent(this, com.fasalsaathi.app.ui.weather.WeatherActivity::class.java))
     }
     
     private fun loadDetailedWeatherData(dialogView: android.view.View, dialog: AlertDialog? = null) {
@@ -500,105 +427,33 @@ class DashboardActivity : BaseBottomNavigationActivity(), NavigationView.OnNavig
         Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
     }
     
-    // Today's Focus chip handlers
-    private fun showSoilHealthInfo() {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Soil Health Focus")
-            .setMessage("🌱 Today's soil health tips:\n\n" +
-                "• Check soil moisture levels\n" +
-                "• Test pH levels (ideal: 6.0-7.0)\n" +
-                "• Look for signs of nutrient deficiency\n" +
-                "• Consider organic composting\n" +
-                "• Monitor soil temperature\n\n" +
-                "💡 Healthy soil leads to better crop yields!")
-            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
-            .setNeutralButton("Learn More") { _, _ -> 
-                // Could open a detailed soil health activity
-                Toast.makeText(this, "Opening soil health guide...", Toast.LENGTH_SHORT).show()
-            }
-            .create()
-        dialog.show()
-    }
-    
-    private fun showPestWatchInfo() {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Pest Watch Focus")
-            .setMessage("🛡️ Today's pest monitoring:\n\n" +
-                "• Inspect leaves for unusual spots\n" +
-                "• Check for insect damage\n" +
-                "• Look for pest eggs on plant stems\n" +
-                "• Monitor crop growth patterns\n" +
-                "• Consider natural pest control\n\n" +
-                "⚠️ Early detection prevents major crop loss!")
-            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
-            .setNeutralButton("Report Pest") { _, _ -> 
-                Toast.makeText(this, "Opening pest reporting...", Toast.LENGTH_SHORT).show()
-            }
-            .create()
-        dialog.show()
-    }
-    
-    private fun showMarketRatesInfo() {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Market Rates Focus")
-            .setMessage("📈 Today's market insights:\n\n" +
-                "• Rice: ₹2,800/quintal (+2.5%)\n" +
-                "• Wheat: ₹2,200/quintal (-1.2%)\n" +
-                "• Cotton: ₹6,500/quintal (+3.8%)\n" +
-                "• Sugarcane: ₹350/quintal (stable)\n" +
-                "• Tomato: ₹35/kg (+15.2%)\n\n" +
-                "💰 Plan your harvest timing wisely!")
-            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
-            .setNeutralButton("View Markets") { _, _ -> 
-                // Could open market activity
-                Toast.makeText(this, "Opening market rates...", Toast.LENGTH_SHORT).show()
-            }
-            .create()
-        dialog.show()
-    }
-    
-    private fun showWaterUsageInfo() {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Water Usage Focus")
-            .setMessage("💧 Today's water management:\n\n" +
-                "• Optimal irrigation: Early morning\n" +
-                "• Check drip irrigation systems\n" +
-                "• Monitor soil moisture depth\n" +
-                "• Consider rainwater harvesting\n" +
-                "• Adjust based on weather forecast\n\n" +
-                "🌊 Efficient water use saves costs and helps crops!")
-            .setPositiveButton("Got it") { dialog, _ -> dialog.dismiss() }
-            .setNeutralButton("Water Calculator") { _, _ -> 
-                Toast.makeText(this, "Opening water usage calculator...", Toast.LENGTH_SHORT).show()
-            }
-            .create()
-        dialog.show()
-    }
-    
-    private fun createFallbackWeatherData(): WeatherService.WeatherData {
-        val app = application as com.fasalsaathi.app.FasalSaathiApplication
-        val userCity = app.sharedPreferences.getString("user_city", "Unknown City")
-        val userState = app.sharedPreferences.getString("user_state", "India")
-        val location = if (userCity != "Select City" && userCity != "Unknown City") {
-            "$userCity, $userState"
-        } else {
-            userState ?: "India"
-        }
+    private fun setupBottomNavigation() {
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         
-        return WeatherService.WeatherData(
-            location = location,
-            temperature = 28.0,
-            temperatureUnit = "°C",
-            condition = "Partly Cloudy",
-            humidity = 65,
-            windSpeed = 12.0,
-            windDirection = "NW",
-            pressure = 1013.0,
-            visibility = 10.0,
-            uvIndex = 6,
-            feelsLike = 30.0,
-            icon = "🌤️"
-        )
+        // Set the home tab as selected by default
+        bottomNavigation.selectedItemId = R.id.nav_home
+        
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Already on dashboard/home
+                    true
+                }
+                R.id.nav_crops -> {
+                    startActivity(Intent(this, CropRecommendationActivity::class.java))
+                    true
+                }
+                R.id.nav_community -> {
+                    startActivity(Intent(this, com.fasalsaathi.app.ui.community.CommunityActivity::class.java))
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, com.fasalsaathi.app.ui.profile.ProfileActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
     
     override fun onBackPressed() {

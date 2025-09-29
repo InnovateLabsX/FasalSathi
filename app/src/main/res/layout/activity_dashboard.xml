@@ -5,6 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.dashboard.DashboardActivity">
 
     <!-- Main Content -->
@@ -25,17 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
-                android:paddingStart="4dp"
-                android:paddingTop="7dp"
+                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="16dp"
                 app:navigationIconTint="@color/white"
                 app:title="@string/app_name"
                 app:titleCentered="false"
-                app:titleMarginStart="4dp"
-                app:titleMarginTop="18dp"
                 app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -125,7 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="start|center_vertical">
+                            android:gravity="center_vertical">
 
                             <ImageView
                                 android:id="@+id/ivWeatherIcon"
@@ -140,8 +135,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginStart="16dp"
-                                android:orientation="vertical"
-                                android:gravity="start">
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:id="@+id/tvTemperature"
@@ -150,7 +144,6 @@
                                     android:textColor="@color/white"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
-                                    android:gravity="start"
                                     tools:text="28°C" />
 
                                 <TextView
@@ -159,7 +152,6 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white_transparent"
                                     android:textSize="14sp"
-                                    android:gravity="start"
                                     tools:text="Partly Cloudy" />
 
                             </LinearLayout>
@@ -219,7 +211,6 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipSoilHealth"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -230,7 +221,6 @@
                             app:chipIconTint="@color/modern_medium_4" />
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipPestWatch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -241,7 +231,6 @@
                             app:chipIconTint="@color/warning_orange" />
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipMarketRates"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"
@@ -252,7 +241,6 @@
                             app:chipIconTint="@color/info_blue" />
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipWaterUsage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Chip.Suggestion"

@@ -4,60 +4,16 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-  <!-- Simple Modern Agricultural Logo for FasalSathi -->
-  
-  <!-- Transparent background for adaptive icon -->
+  <!-- Simple green dot logo -->
+  <!-- Background (transparent to show adaptive icon background) -->
   <path android:fillColor="#00000000" android:pathData="M0,0h108v108h-108z" />
-
-  <!-- Center the design in safe area (24dp margin from edges) -->
-  <group android:translateX="54" android:translateY="54">
-    
-    <!-- Main wheat plant stem -->
-    <path 
-        android:fillColor="#2E7D32"
-        android:pathData="M-2,-25 L2,-25 L2,20 L-2,20 Z"/>
-    
-    <!-- Wheat grains - Left side using simple paths -->
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M-2,-22 Q-6,-20 -8,-18 Q-6,-16 -4,-17 Q-2,-19 -2,-20 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M-2,-17 Q-7,-15 -10,-12 Q-7,-10 -4,-11 Q-2,-14 -2,-15 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M-2,-12 Q-8,-10 -12,-6 Q-8,-4 -4,-5 Q-2,-9 -2,-10 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M-2,-7 Q-7,-5 -10,-1 Q-7,1 -4,0 Q-2,-4 -2,-5 Z"/>
-    
-    <!-- Wheat grains - Right side -->
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M2,-22 Q6,-20 8,-18 Q6,-16 4,-17 Q2,-19 2,-20 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M2,-17 Q7,-15 10,-12 Q7,-10 4,-11 Q2,-14 2,-15 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M2,-12 Q8,-10 12,-6 Q8,-4 4,-5 Q2,-9 2,-10 Z"/>
-    <path 
-        android:fillColor="#4CAF50"
-        android:pathData="M2,-7 Q7,-5 10,-1 Q7,1 4,0 Q2,-4 2,-5 Z"/>
-    
-    <!-- Small leaves at base -->
-    <path 
-        android:fillColor="#66BB6A"
-        android:pathData="M-2,16 Q-5,18 -6,20 Q-4,22 -2,20 Z"/>
-    <path 
-        android:fillColor="#66BB6A"
-        android:pathData="M2,16 Q5,18 6,20 Q4,22 2,20 Z"/>
-    
-    <!-- Modern "F" letter for FasalSathi -->
-    <path 
-        android:fillColor="#1B5E20"
-        android:pathData="M-6,4 L6,4 L6,8 L-2,8 L-2,10 L4,10 L4,14 L-2,14 L-2,20 L-6,20 Z"/>
-    
-  </group>
+  
+  <!-- Main green circle/dot -->
+  <path android:fillColor="#52B69A" 
+        android:pathData="M54,54m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0" />
+      
+  <!-- Inner highlight dot -->
+  <path android:fillColor="#76C893" 
+        android:pathData="M54,54m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
 
 </vector>

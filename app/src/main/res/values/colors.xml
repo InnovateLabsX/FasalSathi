@@ -20,15 +20,6 @@
     <color name="primary_green_light">#76C893</color>  <!-- Primary light variant -->
     <color name="primary_dark">#184E77</color>         <!-- Primary dark -->
     
-    <!-- Launcher Icon Colors -->
-    <color name="launcher_bg_green">#4CAF50</color>    <!-- Agricultural green for launcher background -->
-    
-    <!-- Status Colors -->
-    <color name="success_color">#4CAF50</color>        <!-- Success green -->
-    <color name="error_color">#F44336</color>          <!-- Error red -->
-    <color name="warning_color">#FF9800</color>        <!-- Warning orange -->
-    <color name="info_color">#2196F3</color>           <!-- Info blue -->
-    
     <!-- Secondary Colors -->
     <color name="secondary_blue">#168AAD</color>       <!-- Secondary blue -->
     <color name="secondary_blue_dark">#1A759F</color>  <!-- Secondary blue dark -->
@@ -144,10 +135,4 @@
     <color name="crop_healthy">#52B69A</color>
     <color name="crop_warning">#F4A261</color>
     <color name="crop_disease">#E76F51</color>
-    
-    <!-- Missing Colors for Layouts -->
-    <color name="primary">#52B69A</color>
-    <color name="success">#4CAF50</color>
-    <color name="warning">#FF9800</color>
-    <color name="accent">#B5E48C</color>
 </resources>

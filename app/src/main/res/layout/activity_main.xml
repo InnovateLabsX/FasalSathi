@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/auth_background"
-    android:padding="32dp">
+    tools:context=".MainActivity">
 
-    <!-- App Logo -->
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="FasalSathi Logo"
-        android:layout_marginBottom="24dp" />
-
-    <!-- App Name -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FasalSathi"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="8dp" />
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- App Tagline -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🌾 Your Smart Farming Companion"
-        android:textSize="16sp"
-        android:textColor="@color/white_transparent"
-        android:layout_marginBottom="48dp"
-        android:gravity="center" />
-
-    <!-- Loading Progress -->
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:indeterminate="true"
-        app:indicatorColor="@android:color/white"
-        app:trackThickness="3dp"
-        app:indicatorSize="32dp" />
-
-    <!-- Loading Text -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Loading your farming experience..."
-        android:textSize="14sp"
-        android:textColor="@color/white_transparent"
-        android:layout_marginTop="16dp"
-        android:gravity="center" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
