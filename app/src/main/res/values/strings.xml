@@ -81,11 +81,11 @@
     <string name="focus_pest_watch">Pest Watch</string>
     <string name="focus_market_rates">Market Rates</string>
     <string name="focus_water_usage">Water Usage</string>
-    <string name="action_ai_suggestion_subtitle">Get AI suggestions</string>
-    <string name="action_disease_scan_subtitle">Scan leaves instantly</string>
+    <string name="action_ai_suggestion_subtitle">Get AI Suggestions</string>
+    <string name="action_disease_scan_subtitle">Scan Leaves Instantly</string>
     <string name="action_profile_subtitle">Manage your account</string>
-    <string name="action_ai_assistant_subtitle">Get farming advice</string>
-    <string name="action_weather_subtitle">Plan field work</string>
+    <string name="action_ai_assistant_subtitle">Get Farming Advice</string>
+    <string name="action_weather_subtitle">Plan Field Work</string>
     <string name="insight_soil_moisture">Soil Moisture</string>
     <string name="insight_soil_moisture_value">68% • Optimal</string>
     <string name="insight_market_price">Market Price</string>
