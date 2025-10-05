@@ -61,8 +61,8 @@ FasalSathi is a comprehensive Android application designed to empower farmers wi
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/SIH25.git
-   cd SIH25
+   git clone https://github.com/InnovateLabsX/FasalSathi.git
+   cd FasalSathi
    ```
 
 2. **Open in Android Studio**
